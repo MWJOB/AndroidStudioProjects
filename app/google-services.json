@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "653944202607",
+    "project_id": "lastchatcalendar",
+    "storage_bucket": "lastchatcalendar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:653944202607:android:58c34f7ddb805e5178349a",
+        "android_client_info": {
+          "package_name": "com.dongguk.lastchatcalendar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "653944202607-m7crjkdp2ppr5dho5995sq9amgmss9f4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMfdqmF6wLYvCaSFKgwljxbiuEEQCtTXY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "653944202607-m7crjkdp2ppr5dho5995sq9amgmss9f4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
