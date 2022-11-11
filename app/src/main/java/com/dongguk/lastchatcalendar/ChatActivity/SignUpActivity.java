@@ -19,6 +19,7 @@ import com.dongguk.lastchatcalendar.R;
 import com.dongguk.lastchatcalendar.databinding.ActivitySignUpBinding;
 import com.dongguk.lastchatcalendar.utilities.Constants;
 import com.dongguk.lastchatcalendar.utilities.PreferenceManger;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.ByteArrayOutputStream;
@@ -31,6 +32,11 @@ public class SignUpActivity extends AppCompatActivity {
     private ActivitySignUpBinding binding;
     private PreferenceManger preferenceManger;
     private String encodedImage;
+    private FirebaseFirestore database = FirebaseFirestore.getInstance();
+    private FirebaseAuth mAuth;
+    private String userId;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +44,7 @@ public class SignUpActivity extends AppCompatActivity {
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         preferenceManger = new PreferenceManger(getApplicationContext());
-        setListeners();
+            setListeners();
     }
 
     private void setListeners(){
@@ -61,12 +67,12 @@ public class SignUpActivity extends AppCompatActivity {
     //회원가입 로직
     private void signUp(){
         loading(true);
-        FirebaseFirestore database = FirebaseFirestore.getInstance();
         HashMap<String, Object> user = new HashMap<>();
         user.put(Constants.KEY_NAME, binding.inputName.getText().toString());
         user.put(Constants.KEY_EMAIL, binding.inputEmail.getText().toString());
         user.put(Constants.KEY_PASSWORD, binding.inputPassword.getText().toString());
         user.put(Constants.KEY_IMAGE, encodedImage);
+
         database.collection(Constants.KEY_COLLECTION_USERS)
                 .add(user)
                 .addOnSuccessListener(documentReference -> {
@@ -118,6 +124,14 @@ public class SignUpActivity extends AppCompatActivity {
     );
 
     private Boolean isValidSignUpDetails() {
+        database.collection(Constants.KEY_COLLECTION_USERS)
+                .whereEqualTo(Constants.KEY_EMAIL, binding.inputEmail.getText().toString())
+                .get()
+                .addOnSuccessListener( result ->
+                        loading(false)
+                );
+
+
         if(encodedImage == null){
             showToast("Select profile image");
             return false;

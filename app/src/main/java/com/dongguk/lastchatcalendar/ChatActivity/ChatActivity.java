@@ -157,7 +157,7 @@ public class ChatActivity extends AppCompatActivity {
 
     //날짜출력 로직
     private String getReadableDataTime(Date date) {
-        return new SimpleDateFormat("MMMM dd, yyyy - hh:mm a", Locale.getDefault()).format(date);
+        return new SimpleDateFormat("MMMM dd, yyyy - hh:mm a", Locale.KOREAN).format(date);
     }
 
     //Firebasedb에 KEY_COLLECTION_CONVERSATIONS 묶인 데이터 add

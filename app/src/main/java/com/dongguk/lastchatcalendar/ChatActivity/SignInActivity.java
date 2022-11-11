@@ -87,6 +87,7 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     private Boolean isValidSignInDetails() {
+
         if (binding.inputEmail.getText().toString().trim().isEmpty()) {
             showToast("Enter email");
             return false;
