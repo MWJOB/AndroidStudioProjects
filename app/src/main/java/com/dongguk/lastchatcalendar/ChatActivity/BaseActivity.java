@@ -12,14 +12,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class BaseActivity extends AppCompatActivity {
 }
 
-//    private DocumentReference documentReference
-//
-//    @Override
-//    protected void onCreate(@Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        PreferenceManger preferenceManger = new PreferenceManger(getApplicationContext());
-//        FirebaseFirestore database = FirebaseFirestore.getInstance();
-//        documetReference.
-//
-//    }
-//}
+    private DocumentReference documentReference
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        PreferenceManger preferenceManger = new PreferenceManger(getApplicationContext());
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
+        documetReference.
+
+    }
+}

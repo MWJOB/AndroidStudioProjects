@@ -32,4 +32,8 @@ public class Constants {
 
     //#11
     public static final String KEY_AVAILABILITY = "availability";
+
+
+    //#12
+    public static final String EMAIL_VERIFIED = "emailVerified";
 }
