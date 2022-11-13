@@ -61,7 +61,7 @@
                 android:id="@+id/viewColor2"
                 android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_35sdp"
-                android:background="@drawable/background_note_color_2"/>
+                android:background="@drawable/background_note_color_2" />
 
             <ImageView
                 android:id="@+id/imageColor2"
