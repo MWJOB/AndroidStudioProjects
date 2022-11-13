@@ -13,4 +13,14 @@
     <string name="select_user">Select User</string>
     <string name="type_a_message">Type a message</string>
     <string name="online">상대방이 접속중 입니다.</string>
+    <string name="search_notes">Search Notes</string>
+    <string name="note_name">Note Name</string>
+    <string name="my_notes">My Notes</string>
+    <string name="note_subtitle">Note Subtitle</string>
+    <string name="type_message">메시지를 입력하세요...</string>
+    <string name="my_note">My Note</string>
+    <string name="manycolor">Many Colors</string>
+    <string name="pick_color">Pick_Color</string>
+    <string name="pick_color1">Pick Color</string>
+    <string name="colors">Colors</string>
 </resources>

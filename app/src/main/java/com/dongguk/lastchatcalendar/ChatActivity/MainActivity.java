@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Toast;
 
 
+import com.dongguk.lastchatcalendar.Note.Activity.NoteActivity;
 import com.dongguk.lastchatcalendar.adapters.RecentConversationsAdapter;
 import com.dongguk.lastchatcalendar.databinding.ActivityMainBinding;
 import com.dongguk.lastchatcalendar.listeners.ConversionListener;
@@ -64,6 +65,8 @@ public class MainActivity extends BaseActivity implements ConversionListener {
         //새로운 유저 추가 작동
         binding.fabNewChat.setOnClickListener(v->
                 startActivity(new Intent(getApplicationContext(), UsersActivity.class)));
+        binding.NewNote.setOnClickListener(v->
+                startActivity(new Intent(getApplicationContext(), NoteActivity.class)));
     }
 
     //사용자 정부 읽어오기
