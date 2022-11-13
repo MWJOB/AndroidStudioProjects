@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.dongguk.lastchatcalendar.adapters.ChatAdapter;
 import com.dongguk.lastchatcalendar.databinding.ActivityChatBinding;
@@ -29,8 +28,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
-public class ChatActivity extends AppCompatActivity {
+public class ChatActivity extends BaseActivity {
 
 
     private ActivityChatBinding binding;
@@ -40,6 +40,7 @@ public class ChatActivity extends AppCompatActivity {
     private PreferenceManger preferenceManger;
     private FirebaseFirestore database;
     private String conversionId = null;
+    private boolean isReceiverAvailable = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +91,28 @@ public class ChatActivity extends AppCompatActivity {
         binding.inputMessage.setText(null);
     }
 
+    private void listenAvailabilityOfReceiver(){
+        database.collection(Constants.KEY_COLLECTION_USERS).document(
+                receiverUser.id
+        ).addSnapshotListener(ChatActivity.this, (value, error)-> {
+            if(error != null ){
+                return;
+            }
+            if(value != null){
+                if(value.getLong(Constants.KEY_AVAILABILITY) != null){
+                    int availability = Objects.requireNonNull(
+                            value.getLong(Constants.KEY_AVAILABILITY)
+                    ).intValue();
+                    isReceiverAvailable = availability == 1;
+                }
+            }
+            if(isReceiverAvailable){
+                binding.textAvailability.setVisibility(View.VISIBLE);
+            }else{
+                binding.textAvailability.setVisibility(View.GONE);
+            }
+        });
+    }
     //firebase => user 정보전달
     //fireBase에서 메시지 정보 읽어오기
     private void listenMessages(){
@@ -208,4 +231,10 @@ public class ChatActivity extends AppCompatActivity {
           conversionId = documentSnapshot.getId();
       }
     };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        listenAvailabilityOfReceiver();
+    }
 }
