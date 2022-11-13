@@ -1,7 +1,10 @@
 package com.dongguk.lastchatcalendar.utilities;
 
+import java.util.HashMap;
+
 public class Constants {
     //로그인 DB 상수
+    public static final String EMAIL_VERIFIED = "emailVerified";
     public static final String KEY_COLLECTION_USERS = "users";
     public static final String KEY_NAME = "name";
     public static final String KEY_EMAIL = "email";
@@ -35,5 +38,24 @@ public class Constants {
 
 
     //#12
-    public static final String EMAIL_VERIFIED = "emailVerified";
+    public static final String REMOTE_MSG_AUTHORIZATION = "Authorization";
+    public static final String REMOTE_MSG_CONTENT_TYPE = "Content-Type";
+    public static final String REMOTE_MSG_DATA = "data";
+    public static final String REMOTE_MSG_REGISTRATION_IDS = "registration_ids";
+
+    public static HashMap<String, String> remoteMsgHeaders = null;
+    public static HashMap<String, String> getRemoteMsgHeaders() {
+        if(remoteMsgHeaders == null){
+            remoteMsgHeaders = new HashMap<>();
+            remoteMsgHeaders.put(
+                    REMOTE_MSG_AUTHORIZATION,
+                    "key=AAAAmEIcpW8:APA91bGQan73BOlxNODLHpvSc07u8LWabnZoJ_2vEzIMGWKqz-4lcOt1bpJ1bgZ0fnycjvRUelsgFsLiT7qjNJccgGA8h92snxapirsjdTJ9BasQtSpNSIUER9vF3Z-4O1cdnH-myZEZ"
+            );
+            remoteMsgHeaders.put(
+                    REMOTE_MSG_CONTENT_TYPE,
+                    "application/json"
+            );
+        }
+        return remoteMsgHeaders;
+    }
 }
