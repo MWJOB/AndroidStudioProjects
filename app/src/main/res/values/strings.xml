@@ -23,4 +23,9 @@
     <string name="pick_color">Pick_Color</string>
     <string name="pick_color1">Pick Color</string>
     <string name="colors">Colors</string>
+    <string name="add_url">Add URL</string>
+    <string name="enter_url">Enter URL</string>
+    <string name="url_enter">URL을 입력하세요!</string>
+    <string name="add">추가</string>
+    <string name="cancel_dialog">취소</string>
 </resources>

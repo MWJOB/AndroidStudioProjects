@@ -1,12 +1,5 @@
 package com.dongguk.lastchatcalendar.ChatActivity;
 
-import static android.content.ContentValues.TAG;
-
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,16 +7,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.dongguk.lastchatcalendar.databinding.ActivitySignUpBinding;
 import com.dongguk.lastchatcalendar.utilities.Constants;
 import com.dongguk.lastchatcalendar.utilities.PreferenceManger;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -41,8 +35,6 @@ public class SignUpActivity extends AppCompatActivity {
     private FirebaseFirestore database = FirebaseFirestore.getInstance();
     private FirebaseAuth fAuth;
     private String userId;
-    private FirebaseUser VerifiedUser = fAuth.getCurrentUser();
-
 
 
 
@@ -86,18 +78,17 @@ public class SignUpActivity extends AppCompatActivity {
             if (task.isSuccessful()) {
                 loading(true);
                 // 인증 메일 보내기 로직
-
-                VerifiedUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Toast.makeText(SignUpActivity.this, "인증 메일이 전송되었습니다.", Toast.LENGTH_SHORT).show();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d(TAG, "전송 실패: Email not sent " + e.getMessage());
-                    }
-                });
+//                VerifiedUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void unused) {
+//                        Toast.makeText(SignUpActivity.this, "인증 메일이 전송되었습니다.", Toast.LENGTH_SHORT).show();
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Log.d(TAG, "전송 실패: Email not sent " + e.getMessage());
+//                    }
+//                });
 
 
 
