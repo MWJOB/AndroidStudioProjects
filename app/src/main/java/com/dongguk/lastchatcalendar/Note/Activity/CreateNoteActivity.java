@@ -60,6 +60,8 @@ public class CreateNoteActivity extends AppCompatActivity {
 
     //AlertDialog 사용 url 삽입을 위해
     private AlertDialog dialogAddURL;
+    //삭제용
+    private AlertDialog dialogDeleteNote;
 
     private Note alreadyAvailableNote;
 
@@ -324,6 +326,71 @@ public class CreateNoteActivity extends AppCompatActivity {
                 showAddURLDialog();
             }
         });
+        //삭제 버튼 로직
+        if(alreadyAvailableNote != null){
+            layoutSelectColor.findViewById(R.id.layoutDeleteNote).setVisibility(View.VISIBLE);
+            layoutSelectColor.findViewById(R.id.layoutDeleteNote).setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    showDeleteNoteDialog();
+
+                }
+            });
+        }
+    }
+    //DeleteDialog 사용 로직
+    //DeleteDialog 클릭 로직
+    //
+    private void showDeleteNoteDialog(){
+        if(dialogDeleteNote == null){
+            AlertDialog.Builder builder = new AlertDialog.Builder(CreateNoteActivity.this);
+            View view = LayoutInflater.from(this).inflate(
+                    R.layout.layout_delete_note,
+                    (ViewGroup) findViewById(R.id.layoutDeleteNoteContainer)
+            );
+            builder.setView(view);
+            dialogDeleteNote = builder.create();
+            if(dialogDeleteNote.getWindow() != null){
+                dialogDeleteNote.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+            }
+            view.findViewById(R.id.textDeleteNote).setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+
+                    @SuppressLint("StaticFieldLeak")
+                    class DeleteNoteTask extends AsyncTask<Void, Void, Void>{
+
+                        @Override
+                        protected Void doInBackground(Void... voids) {
+                            NotesDatabase.getDatabase(getApplicationContext()).noteDao()
+                                    .deleteNote(alreadyAvailableNote);
+                            return null;
+                        }
+
+                        @Override
+                        protected void onPostExecute(Void aVoid){
+                            super.onPostExecute(aVoid);
+                            Intent intent = new Intent();
+                            intent.putExtra("isNoteDeleted", true);
+                            setResult(RESULT_OK, intent);
+                            finish();
+                        }
+                    }
+
+                    new DeleteNoteTask().execute();
+                }
+            });
+            //취소 로직
+            view.findViewById(R.id.textCancel).setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    dialogDeleteNote.dismiss();
+                }
+            });
+        }
+
+        dialogDeleteNote.show();
     }
     private void setSubtitleIndicator() {
         GradientDrawable gradientDrawable = (GradientDrawable) viewSubtitleIndicator.getBackground();
