@@ -61,6 +61,8 @@ public class CreateNoteActivity extends AppCompatActivity {
     //AlertDialog 사용 url 삽입을 위해
     private AlertDialog dialogAddURL;
 
+    private Note alreadyAvailableNote;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,9 +93,32 @@ public class CreateNoteActivity extends AppCompatActivity {
         selectedNoteColor = "#333333"; // 기본 색 설정
         selectedImagePath = "";
 
+        //클릭해서 해당 데이터를 볼러오는 로직
+        if(getIntent().getBooleanExtra("isViewOrUpDATE", false)){
+            alreadyAvailableNote = (Note)getIntent().getSerializableExtra("note");
+            setViewOrUpDateNote();
+
+        }
+
         initSelectColors();
         setSubtitleIndicator();
+    }
 
+    //Image, Weblink 가져오기
+    private void setViewOrUpDateNote(){
+        inputNoteTitle.setText(alreadyAvailableNote.getTitle());
+        inputNoteSubtitle.setText(alreadyAvailableNote.getSubtitle());
+        inputNoteText.setText(alreadyAvailableNote.getNoteText());
+        textDateTime.setText(alreadyAvailableNote.getDateTime());
+        if(alreadyAvailableNote.getImagePath() != null && !alreadyAvailableNote.getImagePath().trim().isEmpty()){
+            imageNote.setImageBitmap(BitmapFactory.decodeFile(alreadyAvailableNote.getImagePath()));
+            imageNote.setVisibility(View.VISIBLE);
+            selectedImagePath = alreadyAvailableNote.getImagePath();
+        }
+        if(alreadyAvailableNote.getWeblink() != null && !alreadyAvailableNote.getWeblink().trim().isEmpty()){
+            textWebURL.setText(alreadyAvailableNote.getWeblink());
+            layoutWebURL.setVisibility(View.VISIBLE);
+        }
     }
 
     private void setListeners() {
@@ -121,6 +146,11 @@ public class CreateNoteActivity extends AppCompatActivity {
         //layoutWebURL의 visble 유무를 체 WEB URL을 추가하는 동안만 표시되도록 했기 때문에 웹 URL이 추가되었음을 의미
         if(layoutWebURL.getVisibility() == View.VISIBLE){
             note.setWeblink(textWebURL.getText().toString());
+        }
+
+        //이미 사용된 노트가 아니라면 Id를 호출
+        if(alreadyAvailableNote != null){
+            note.setId(alreadyAvailableNote.getId());
         }
 
         @SuppressLint("StaticFieldLeak")
@@ -225,6 +255,24 @@ public class CreateNoteActivity extends AppCompatActivity {
                 setSubtitleIndicator();
             }
         });
+
+        if(alreadyAvailableNote != null && alreadyAvailableNote.getColor() != null && !alreadyAvailableNote.getColor().trim().isEmpty()){
+            switch (alreadyAvailableNote.getColor()){
+                case "#FDBE3B":
+                    layoutSelectColor.findViewById(R.id.viewColor2).performClick();
+                    break;
+                case "#FF4842":
+                    layoutSelectColor.findViewById(R.id.viewColor3).performClick();
+                    break;
+                case "#3A52Fc":
+                    layoutSelectColor.findViewById(R.id.viewColor4).performClick();
+                    break;
+                case "#000000":
+                    layoutSelectColor.findViewById(R.id.viewColor5).performClick();
+                    break;
+
+            }
+        }
 
         //사진 선택 클릭 로직
         layoutSelectColor.findViewById(R.id.layoutAddImage).setOnClickListener(new View.OnClickListener() {

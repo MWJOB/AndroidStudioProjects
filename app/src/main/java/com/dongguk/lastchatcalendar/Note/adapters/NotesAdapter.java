@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dongguk.lastchatcalendar.Note.entities.Note;
+import com.dongguk.lastchatcalendar.Note.listeners.NotesListener;
 import com.dongguk.lastchatcalendar.R;
 import com.makeramen.roundedimageview.RoundedImageView;
 
@@ -21,9 +22,11 @@ import java.util.List;
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHolder> {
 
     private List<Note> notes;
+    private NotesListener notesListener;
 
-    public NotesAdapter(List<Note> notes) {
+    public NotesAdapter(List<Note> notes, NotesListener notesListener) {
         this.notes = notes;
+        this.notesListener = notesListener;
     }
 
     @NonNull
@@ -39,8 +42,14 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NoteViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull NoteViewHolder holder, final int position) {
         holder.setNote(notes.get(position));
+        holder.layoutNote.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                notesListener.onNoteClicked(notes.get(holder.getAdapterPosition()), holder.getAdapterPosition());
+            }
+        });
     }
 
     @Override
