@@ -123,6 +123,7 @@ public class CreateNoteActivity extends AppCompatActivity {
             note.setWeblink(textWebURL.getText().toString());
         }
 
+        @SuppressLint("StaticFieldLeak")
         class SaveNoteTask extends AsyncTask<Void, Void, Void> {
 
             @Override
