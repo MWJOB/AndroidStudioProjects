@@ -1,4 +1,4 @@
-package com.dongguk.lastchatcalendar.adapters;
+package com.dongguk.lastchatcalendar.ChatActivity.adapters;
 
 import android.graphics.Bitmap;
 import android.view.LayoutInflater;
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dongguk.lastchatcalendar.databinding.ItemContainerReceivedMessageBinding;
 import com.dongguk.lastchatcalendar.databinding.ItemContainerSentMessageBinding;
-import com.dongguk.lastchatcalendar.models.ChatMessage;
+import com.dongguk.lastchatcalendar.ChatActivity.models.ChatMessage;
 
 import java.util.List;
 

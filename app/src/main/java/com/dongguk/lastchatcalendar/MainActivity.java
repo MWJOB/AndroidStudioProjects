@@ -13,17 +13,17 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.dongguk.lastchatcalendar.ChatActivity.BaseActivity;
-import com.dongguk.lastchatcalendar.ChatActivity.ChatMainActivity;
-import com.dongguk.lastchatcalendar.ChatActivity.SignInActivity;
+import com.dongguk.lastchatcalendar.Activity.ReportActivity;
+import com.dongguk.lastchatcalendar.ChatActivity.Activity.BaseActivity;
+import com.dongguk.lastchatcalendar.ChatActivity.Activity.ChatMainActivity;
 //import com.dongguk.lastchatcalendar.BulletinBoard.NewActivity;
 //import com.dongguk.lastchatcalendar.BulletinBoard.ReturnActivity;
 //import com.dongguk.lastchatcalendar.BulletinBoard.TransferActivity;
 //import com.dongguk.lastchatcalendar.Fragments.TimeTableFragment;
 import com.dongguk.lastchatcalendar.NoteActivity.Activity.NoteActivity;
+import com.dongguk.lastchatcalendar.ChatActivity.utilities.Constants;
+import com.dongguk.lastchatcalendar.ChatActivity.utilities.PreferenceManger;
 import com.dongguk.lastchatcalendar.databinding.ActivityMainBinding;
-import com.dongguk.lastchatcalendar.utilities.Constants;
-import com.dongguk.lastchatcalendar.utilities.PreferenceManger;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -214,6 +214,22 @@ public class MainActivity extends BaseActivity {
                 .addOnFailureListener(e -> showToast("로그아웃 실패"));
     }
 
+    //탈퇴 처리
+    private void DeleteUser() {
+        showToast("탈퇴처리 중...");
+        mFirebaseAuth.getCurrentUser().delete();
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
+        DocumentReference documentReference;
+        documentReference = database.collection(Constants.KEY_COLLECTION_USERS)
+                .document(preferenceManger.getString(Constants.KEY_USER_ID));
+        documentReference.delete().addOnSuccessListener(unused -> {
+                    preferenceManger.clear();
+                    startActivity(new Intent(getApplicationContext(), SignInActivity.class));
+                    finish();
+                })
+                .addOnFailureListener(e -> showToast("탈퇴 실패"));
+    }
+
     //매인 화면 기능 읽어오기
     private void setListeners(){
         binding.btnChat.setOnClickListener(v->
@@ -221,6 +237,9 @@ public class MainActivity extends BaseActivity {
         binding.btnLogout.setOnClickListener(v-> signOut());
         binding.btnNote.setOnClickListener(v->
                 startActivity(new Intent(getApplicationContext(), NoteActivity.class)));
+        binding.btnReport.setOnClickListener(v->
+                startActivity(new Intent(getApplicationContext(), ReportActivity.class)));
+        binding.btnDelete.setOnClickListener(v->DeleteUser());
 
     }
 

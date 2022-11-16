@@ -1,4 +1,4 @@
-package com.dongguk.lastchatcalendar.ChatActivity;
+package com.dongguk.lastchatcalendar;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -16,10 +16,12 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dongguk.lastchatcalendar.databinding.ActivitySignUpBinding;
-import com.dongguk.lastchatcalendar.utilities.Constants;
-import com.dongguk.lastchatcalendar.utilities.PreferenceManger;
+import com.dongguk.lastchatcalendar.ChatActivity.utilities.Constants;
+import com.dongguk.lastchatcalendar.ChatActivity.utilities.PreferenceManger;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.ByteArrayOutputStream;
@@ -34,6 +36,7 @@ public class SignUpActivity extends AppCompatActivity {
     private String encodedImage;
     private FirebaseFirestore database = FirebaseFirestore.getInstance();
     private FirebaseAuth fAuth;
+    private DatabaseReference reference;
     private String userId;
 
 
@@ -77,6 +80,8 @@ public class SignUpActivity extends AppCompatActivity {
         fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener((task -> {
             if (task.isSuccessful()) {
                 loading(true);
+
+
                 // 인증 메일 보내기 로직
 //                VerifiedUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
 //                    @Override
@@ -93,12 +98,20 @@ public class SignUpActivity extends AppCompatActivity {
 
 
                 // 회원가입 로직
-                FirebaseUser userId = fAuth.getCurrentUser();
                 HashMap<String, Object> user = new HashMap<>();
                 user.put(Constants.KEY_NAME, binding.inputName.getText().toString());
                 user.put(Constants.KEY_EMAIL, binding.inputEmail.getText().toString());
                 user.put(Constants.KEY_PASSWORD, binding.inputPassword.getText().toString());
+                user.put(Constants.KEY_UNIVERSITY, binding.inputUniversity.getText().toString());
                 user.put(Constants.KEY_IMAGE, encodedImage);
+                FirebaseUser userId = fAuth.getCurrentUser();
+                assert userId != null;
+                String userid = userId.getUid();
+                //파이어데이터베이스 추가
+                reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
+                reference.setValue(user);
+
+                //파이어스토어 추가
                 database.collection(Constants.KEY_COLLECTION_USERS)
                         .add(user)
                         .addOnSuccessListener(documentReference -> {
@@ -106,6 +119,7 @@ public class SignUpActivity extends AppCompatActivity {
                             preferenceManger.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
                             preferenceManger.putString(Constants.KEY_USER_ID, documentReference.getId());
                             preferenceManger.putString(Constants.KEY_NAME, binding.inputName.getText().toString());
+                            preferenceManger.putString(Constants.KEY_UNIVERSITY, binding.inputUniversity.getText().toString());
                             preferenceManger.putString(Constants.KEY_IMAGE, encodedImage);
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);//새로운 Activity를 수행하고 현재 Activity를 스택에서 제거하기
@@ -166,6 +180,9 @@ public class SignUpActivity extends AppCompatActivity {
             return false;
         }else if(!Patterns.EMAIL_ADDRESS.matcher(binding.inputEmail.getText().toString()).matches()) {
             showToast("Enter valid email");
+            return false;
+        }else if(binding.inputUniversity.getText().toString().trim().isEmpty()){
+            showToast("Enter email");
             return false;
         }else if(binding.inputPassword.getText().toString().trim().isEmpty()){
             showToast("Enter password");

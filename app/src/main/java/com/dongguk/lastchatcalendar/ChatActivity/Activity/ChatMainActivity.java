@@ -1,4 +1,4 @@
-package com.dongguk.lastchatcalendar.ChatActivity;
+package com.dongguk.lastchatcalendar.ChatActivity.Activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -10,24 +10,22 @@ import android.widget.Toast;
 
 
 import com.dongguk.lastchatcalendar.NoteActivity.Activity.NoteActivity;
-import com.dongguk.lastchatcalendar.adapters.RecentConversationsAdapter;
+import com.dongguk.lastchatcalendar.ChatActivity.adapters.RecentConversationsAdapter;
 import com.dongguk.lastchatcalendar.databinding.ActivityChatMainBinding;
-import com.dongguk.lastchatcalendar.listeners.ConversionListener;
-import com.dongguk.lastchatcalendar.models.ChatMessage;
-import com.dongguk.lastchatcalendar.models.User;
-import com.dongguk.lastchatcalendar.utilities.Constants;
-import com.dongguk.lastchatcalendar.utilities.PreferenceManger;
+import com.dongguk.lastchatcalendar.ChatActivity.listeners.ConversionListener;
+import com.dongguk.lastchatcalendar.ChatActivity.models.ChatMessage;
+import com.dongguk.lastchatcalendar.ChatActivity.models.User;
+import com.dongguk.lastchatcalendar.ChatActivity.utilities.Constants;
+import com.dongguk.lastchatcalendar.ChatActivity.utilities.PreferenceManger;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 
 public class ChatMainActivity extends BaseActivity implements ConversionListener {
@@ -61,7 +59,7 @@ public class ChatMainActivity extends BaseActivity implements ConversionListener
 
     //매인 화면 기능 읽어오기
     private void setListeners(){
-        binding.imageSignOut.setOnClickListener(v-> signOut());
+        binding.imageBack.setOnClickListener(v-> onBackPressed());
         //새로운 유저 추가 작동
         binding.fabNewChat.setOnClickListener(v->
                 startActivity(new Intent(getApplicationContext(), UsersActivity.class)));
@@ -150,24 +148,24 @@ public class ChatMainActivity extends BaseActivity implements ConversionListener
                 .addOnFailureListener(e -> showToast("Unable to update token"));
 
     }
-    //로그아웃 로직
-    private void signOut() {
-        showToast("로그아웃 중...");
-        FirebaseFirestore database = FirebaseFirestore.getInstance();
-        DocumentReference documentReference =
-                database.collection(Constants.KEY_COLLECTION_USERS).document(
-                        preferenceManger.getString(Constants.KEY_USER_ID)
-                );
-        HashMap<String, Object> updates = new HashMap<>();
-        updates.put(Constants.KEY_FCM_TOKEN, FieldValue.delete());
-        documentReference.update(updates)
-                .addOnSuccessListener(unused -> {
-                    preferenceManger.clear();
-                    startActivity(new Intent(getApplicationContext(), SignInActivity.class));
-                    finish();
-                })
-                .addOnFailureListener(e -> showToast("로그아웃 실패"));
-    }
+//    //로그아웃 로직
+//    private void signOut() {
+//        showToast("로그아웃 중...");
+//        FirebaseFirestore database = FirebaseFirestore.getInstance();
+//        DocumentReference documentReference =
+//                database.collection(Constants.KEY_COLLECTION_USERS).document(
+//                        preferenceManger.getString(Constants.KEY_USER_ID)
+//                );
+//        HashMap<String, Object> updates = new HashMap<>();
+//        updates.put(Constants.KEY_FCM_TOKEN, FieldValue.delete());
+//        documentReference.update(updates)
+//                .addOnSuccessListener(unused -> {
+//                    preferenceManger.clear();
+//                    startActivity(new Intent(getApplicationContext(), SignInActivity.class));
+//                    finish();
+//                })
+//                .addOnFailureListener(e -> showToast("로그아웃 실패"));
+//    }
 
     //메인화면 user 불러오기 관련 출력 로직
     @Override

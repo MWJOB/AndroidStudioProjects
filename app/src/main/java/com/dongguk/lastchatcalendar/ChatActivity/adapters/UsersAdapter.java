@@ -1,4 +1,4 @@
-package com.dongguk.lastchatcalendar.adapters;
+package com.dongguk.lastchatcalendar.ChatActivity.adapters;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,8 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dongguk.lastchatcalendar.databinding.ItemContainerUserBinding;
-import com.dongguk.lastchatcalendar.listeners.UserListener;
-import com.dongguk.lastchatcalendar.models.User;
+import com.dongguk.lastchatcalendar.ChatActivity.listeners.UserListener;
+import com.dongguk.lastchatcalendar.ChatActivity.models.User;
 
 import java.util.List;
 

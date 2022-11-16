@@ -1,4 +1,4 @@
-package com.dongguk.lastchatcalendar.models;
+package com.dongguk.lastchatcalendar.ChatActivity.models;
 
 import java.util.Date;
 

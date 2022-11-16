@@ -8,7 +8,7 @@
 //import android.view.MenuItem;
 //import android.widget.LinearLayout;
 //
-//import com.dongguk.lastchatcalendar.ChatActivity.BaseActivity;
+//import com.dongguk.lastchatcalendar.ChatActivity.Activity.BaseActivity;
 //import com.dongguk.lastchatcalendar.BulletinBoard.NewWriteActivity;
 //import com.dongguk.lastchatcalendar.FirebaseHelper;
 //import com.dongguk.lastchatcalendar.R;

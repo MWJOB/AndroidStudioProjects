@@ -1,4 +1,4 @@
-package com.dongguk.lastchatcalendar.network;
+package com.dongguk.lastchatcalendar.ChatActivity.network;
 
 import java.util.HashMap;
 

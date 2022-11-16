@@ -1,4 +1,4 @@
-package com.dongguk.lastchatcalendar.network;
+package com.dongguk.lastchatcalendar.ChatActivity.network;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;

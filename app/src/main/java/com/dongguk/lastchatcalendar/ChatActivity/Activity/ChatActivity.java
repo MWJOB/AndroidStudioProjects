@@ -1,4 +1,4 @@
-package com.dongguk.lastchatcalendar.ChatActivity;
+package com.dongguk.lastchatcalendar.ChatActivity.Activity;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,14 +10,14 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.dongguk.lastchatcalendar.adapters.ChatAdapter;
+import com.dongguk.lastchatcalendar.ChatActivity.adapters.ChatAdapter;
 import com.dongguk.lastchatcalendar.databinding.ActivityChatBinding;
-import com.dongguk.lastchatcalendar.models.ChatMessage;
-import com.dongguk.lastchatcalendar.models.User;
-import com.dongguk.lastchatcalendar.network.ApiClient;
-import com.dongguk.lastchatcalendar.network.ApiService;
-import com.dongguk.lastchatcalendar.utilities.Constants;
-import com.dongguk.lastchatcalendar.utilities.PreferenceManger;
+import com.dongguk.lastchatcalendar.ChatActivity.models.ChatMessage;
+import com.dongguk.lastchatcalendar.ChatActivity.models.User;
+import com.dongguk.lastchatcalendar.ChatActivity.network.ApiClient;
+import com.dongguk.lastchatcalendar.ChatActivity.network.ApiService;
+import com.dongguk.lastchatcalendar.ChatActivity.utilities.Constants;
+import com.dongguk.lastchatcalendar.ChatActivity.utilities.PreferenceManger;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;

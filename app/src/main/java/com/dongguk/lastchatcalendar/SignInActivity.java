@@ -1,4 +1,4 @@
-package com.dongguk.lastchatcalendar.ChatActivity;
+package com.dongguk.lastchatcalendar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,10 +10,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.dongguk.lastchatcalendar.Activity.ResetPasswordActivity;
-import com.dongguk.lastchatcalendar.MainActivity;
 import com.dongguk.lastchatcalendar.databinding.ActivitySignInBinding;
-import com.dongguk.lastchatcalendar.utilities.Constants;
-import com.dongguk.lastchatcalendar.utilities.PreferenceManger;
+import com.dongguk.lastchatcalendar.ChatActivity.utilities.Constants;
+import com.dongguk.lastchatcalendar.ChatActivity.utilities.PreferenceManger;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

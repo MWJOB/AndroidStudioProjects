@@ -1,27 +1,18 @@
-package com.dongguk.lastchatcalendar.ChatActivity;
+package com.dongguk.lastchatcalendar.ChatActivity.Activity;
 
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Patterns;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.Toast;
 
 
 import androidx.appcompat.app.AlertDialog;
 
-import com.dongguk.lastchatcalendar.NoteActivity.Activity.CreateNoteActivity;
-import com.dongguk.lastchatcalendar.NoteActivity.Activity.NoteActivity;
-import com.dongguk.lastchatcalendar.R;
-import com.dongguk.lastchatcalendar.adapters.UsersAdapter;
+import com.dongguk.lastchatcalendar.ChatActivity.adapters.UsersAdapter;
 import com.dongguk.lastchatcalendar.databinding.ActivityUsersBinding;
-import com.dongguk.lastchatcalendar.listeners.UserListener;
-import com.dongguk.lastchatcalendar.models.User;
-import com.dongguk.lastchatcalendar.utilities.Constants;
-import com.dongguk.lastchatcalendar.utilities.PreferenceManger;
+import com.dongguk.lastchatcalendar.ChatActivity.listeners.UserListener;
+import com.dongguk.lastchatcalendar.ChatActivity.models.User;
+import com.dongguk.lastchatcalendar.ChatActivity.utilities.Constants;
+import com.dongguk.lastchatcalendar.ChatActivity.utilities.PreferenceManger;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 

@@ -1,4 +1,4 @@
-package com.dongguk.lastchatcalendar.utilities;
+package com.dongguk.lastchatcalendar.ChatActivity.utilities;
 
 
 import android.content.Context;

@@ -8,14 +8,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
-import com.dongguk.lastchatcalendar.ChatActivity.BaseActivity;
-import com.dongguk.lastchatcalendar.ChatActivity.SignInActivity;
+import com.dongguk.lastchatcalendar.SignInActivity;
 import com.dongguk.lastchatcalendar.R;
-import com.dongguk.lastchatcalendar.utilities.Constants;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,6 +28,14 @@ public class ResetPasswordActivity extends AppCompatActivity {
     Button btn_reset;
 
     FirebaseAuth firebaseAuth;
+
+    @Override
+    public void setContentView(@LayoutRes int layoutResID) {
+        super.setContentView(layoutResID);
+
+        Toolbar myToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

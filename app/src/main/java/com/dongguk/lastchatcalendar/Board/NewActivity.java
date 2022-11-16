@@ -8,7 +8,7 @@
 //import androidx.recyclerview.widget.LinearLayoutManager;
 //import androidx.recyclerview.widget.RecyclerView;
 //
-//import com.dongguk.lastchatcalendar.ChatActivity.BaseActivity;
+//import com.dongguk.lastchatcalendar.ChatActivity.Activity.BaseActivity;
 //import com.example.myapplication.Activity.BasicActivity;
 //import com.example.myapplication.R;
 //import com.example.myapplication.Writeinfo;

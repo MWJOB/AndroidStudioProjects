@@ -4,8 +4,38 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    android:background="@color/purple_200"
-    android:elevation="4dp"
+    android:background="@color/primary"
+    android:elevation="@dimen/_4sdp"
     android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-    app:titleTextColor="#FFFFFF" />
+    app:titleTextColor="#FFFFFF" >
+
+<!--    <ImageView-->
+<!--        android:id="@+id/imageProfile"-->
+<!--        android:layout_width="@dimen/_35sdp"-->
+<!--        android:layout_height="@dimen/_35sdp"-->
+<!--        android:background="@drawable/background_icon"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        app:tint="@color/white"-->
+<!--        app:riv_corner_radius="@dimen/_8sdp"/>-->
+<!--    <TextView-->
+<!--        android:id="@+id/UserName"-->
+<!--        android:text="hello"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/imageProfile"-->
+<!--        app:layout_constraintEnd_toStartOf="@id/imageBack"-->
+<!--        app:layout_constraintStart_toEndOf="@id/imageProfile"-->
+<!--        app:layout_constraintTop_toTopOf="@id/imageProfile"/>-->
+<!--    <ImageView-->
+<!--        android:id="@+id/ImageBack"-->
+<!--        android:layout_width="@dimen/_30sdp"-->
+<!--        android:layout_height="@dimen/_35sdp"-->
+<!--        android:src="@drawable/ic_back"-->
+<!--        android:layout_gravity="end"-->
+<!--        app:tint="@color/white"-->
+<!--        android:layout_marginEnd="@dimen/_16sdp"-->
+<!--        />-->
+</androidx.appcompat.widget.Toolbar>

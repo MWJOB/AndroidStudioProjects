@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:backgroundTint="#FF0000">
+
+    <include
+        layout="@layout/view_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/_10sdp"
+            android:layout_below="@+id/toolbar">
+
+            <EditText
+                android:id="@+id/reportEditText"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:hint="상대 닉네임 / 제목"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/reportEditText2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_200sdp"
+                android:ems="10"
+                android:gravity="top"
+                android:hint="내용"
+                android:inputType="textMultiLine" />
+
+            <Button
+                android:id="@+id/btn_reportupload"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#B3B2B2"
+                android:text="확인"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/contentsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:lineSpacingExtra="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:text="*신고 접수 전 해당 내용을 확인해주세요*\n 1. 부적절할 홍보 게시글
+\n 2. 음란성 또는 청소년에게 부적합한 내용\n 3. 명예훼손/사생활 침해 및 저작권침해 등\n 4. 불법촬영물등 신고"/>
+
+                <TextView
+                    android:id="@+id/forbid_behaviour"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:text="5. 기타 [금지행위 자세히 보기]"/>
+
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+</RelativeLayout>

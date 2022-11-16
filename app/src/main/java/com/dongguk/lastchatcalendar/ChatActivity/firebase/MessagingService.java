@@ -1,4 +1,4 @@
-package com.dongguk.lastchatcalendar.firebase;
+package com.dongguk.lastchatcalendar.ChatActivity.firebase;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -11,10 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.dongguk.lastchatcalendar.ChatActivity.ChatActivity;
+import com.dongguk.lastchatcalendar.ChatActivity.Activity.ChatActivity;
 import com.dongguk.lastchatcalendar.R;
-import com.dongguk.lastchatcalendar.models.User;
-import com.dongguk.lastchatcalendar.utilities.Constants;
+import com.dongguk.lastchatcalendar.ChatActivity.models.User;
+import com.dongguk.lastchatcalendar.ChatActivity.utilities.Constants;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
