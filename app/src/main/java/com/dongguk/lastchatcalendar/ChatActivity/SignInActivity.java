@@ -1,5 +1,6 @@
 package com.dongguk.lastchatcalendar.ChatActivity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,22 +9,31 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
 
+import com.dongguk.lastchatcalendar.Activity.ResetPasswordActivity;
+import com.dongguk.lastchatcalendar.MainActivity;
 import com.dongguk.lastchatcalendar.databinding.ActivitySignInBinding;
 import com.dongguk.lastchatcalendar.utilities.Constants;
 import com.dongguk.lastchatcalendar.utilities.PreferenceManger;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
 
 public class SignInActivity extends AppCompatActivity {
 
     private ActivitySignInBinding binding;
     private PreferenceManger preferenceManger;
+    private FirebaseAuth auth;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        auth = FirebaseAuth.getInstance();
         preferenceManger = new PreferenceManger(getApplicationContext());
         if(preferenceManger.getBoolean(Constants.KEY_IS_SIGNED_IN)){
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -39,10 +49,24 @@ public class SignInActivity extends AppCompatActivity {
         binding.textCreateNewAccount.setOnClickListener(v ->
                 startActivity(new Intent(getApplicationContext(), SignUpActivity.class)));
         binding.buttonSignIn.setOnClickListener(v-> {
-            if(isValidSignInDetails()){
-                signIn();
-            }
+            auth.signInWithEmailAndPassword(binding.inputEmail.getText().toString(), binding.inputPassword.getText().toString())
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+                                if(isValidSignInDetails()){
+                                    signIn();
+                                }else{
+                                    loading(false);
+                                    Toast.makeText(SignInActivity.this, "로그인 실패!", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
+                    });
+
         });
+        binding.ForgotPassword.setOnClickListener(v ->
+                startActivity(new Intent(getApplicationContext(), ResetPasswordActivity.class)));
     }
 
     //4
@@ -51,7 +75,7 @@ public class SignInActivity extends AppCompatActivity {
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         database.collection(Constants.KEY_COLLECTION_USERS)
                 .whereEqualTo(Constants.KEY_EMAIL, binding.inputEmail.getText().toString())
-                .whereEqualTo(Constants.KEY_PASSWORD, binding.inputPassword.getText().toString())
+                //.whereEqualTo(Constants.KEY_PASSWORD, binding.inputPassword.getText().toString())
                 .get()
                 .addOnCompleteListener(task -> {
                     if(task.isSuccessful() && task.getResult() != null

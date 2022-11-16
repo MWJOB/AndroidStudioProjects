@@ -1,4 +1,4 @@
-package com.dongguk.lastchatcalendar.Note.entities;
+package com.dongguk.lastchatcalendar.NoteActivity.entities;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;

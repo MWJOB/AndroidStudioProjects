@@ -1,4 +1,4 @@
-package com.dongguk.lastchatcalendar.Note.database;
+package com.dongguk.lastchatcalendar.NoteActivity.database;
 
 import android.content.Context;
 
@@ -6,8 +6,8 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.dongguk.lastchatcalendar.Note.dao.NoteDao;
-import com.dongguk.lastchatcalendar.Note.entities.Note;
+import com.dongguk.lastchatcalendar.NoteActivity.dao.NoteDao;
+import com.dongguk.lastchatcalendar.NoteActivity.entities.Note;
 
 @Database(entities = {Note.class}, version = 1, exportSchema = false)
 public abstract class NotesDatabase extends RoomDatabase {

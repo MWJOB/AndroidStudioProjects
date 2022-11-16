@@ -1,4 +1,4 @@
-package com.dongguk.lastchatcalendar.Note.Activity;
+package com.dongguk.lastchatcalendar.NoteActivity.Activity;
 
 
 import androidx.annotation.NonNull;
@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -22,19 +21,17 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.dongguk.lastchatcalendar.Note.adapters.NotesAdapter;
-import com.dongguk.lastchatcalendar.Note.database.NotesDatabase;
-import com.dongguk.lastchatcalendar.Note.entities.Note;
-import com.dongguk.lastchatcalendar.Note.listeners.NotesListener;
+import com.dongguk.lastchatcalendar.NoteActivity.adapters.NotesAdapter;
+import com.dongguk.lastchatcalendar.NoteActivity.database.NotesDatabase;
+import com.dongguk.lastchatcalendar.NoteActivity.entities.Note;
+import com.dongguk.lastchatcalendar.NoteActivity.listeners.NotesListener;
 import com.dongguk.lastchatcalendar.R;
 import com.dongguk.lastchatcalendar.databinding.ActivityNoteBinding;
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LastChatCalendar</string>
+    <string name="app_name">MyAppLast</string>
     <string name="welcome_back">Welcome Back!</string>
     <string name="login_to_continue">Login to continue</string>
     <string name="email">Email</string>
@@ -31,4 +31,5 @@
     <string name="delete_note">노트 삭제</string>
     <string name="are_you_sure_delete_this">정말로 삭제 하시겠습니까?</string>
     <string name="delete_note22">Delete Note</string>
+    <string name="forgot_your_password">Forgot your password?</string>
 </resources>

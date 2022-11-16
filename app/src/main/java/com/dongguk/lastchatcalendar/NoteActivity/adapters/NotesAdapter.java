@@ -1,4 +1,4 @@
-package com.dongguk.lastchatcalendar.Note.adapters;
+package com.dongguk.lastchatcalendar.NoteActivity.adapters;
 
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -14,8 +14,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dongguk.lastchatcalendar.Note.entities.Note;
-import com.dongguk.lastchatcalendar.Note.listeners.NotesListener;
+import com.dongguk.lastchatcalendar.NoteActivity.entities.Note;
+import com.dongguk.lastchatcalendar.NoteActivity.listeners.NotesListener;
 import com.dongguk.lastchatcalendar.R;
 import com.makeramen.roundedimageview.RoundedImageView;
 

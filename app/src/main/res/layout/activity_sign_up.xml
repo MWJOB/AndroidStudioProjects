@@ -54,7 +54,7 @@
         <EditText
             android:id="@+id/inputName"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_45sdp"
+            android:layout_height="@dimen/_35sdp"
             android:layout_marginTop="@dimen/_20sdp"
             android:background="@drawable/background_input"
             android:hint="@string/name"
@@ -68,7 +68,7 @@
         <EditText
             android:id="@+id/inputEmail"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_45sdp"
+            android:layout_height="@dimen/_35sdp"
             android:layout_marginTop="@dimen/_16sdp"
             android:background="@drawable/background_input"
             android:hint="@string/email"
@@ -81,9 +81,24 @@
             android:textSize="@dimen/_13ssp"/>
 
         <EditText
+            android:id="@+id/inputUniversity"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:background="@drawable/background_input"
+            android:hint="University"
+            android:imeOptions="actionNext"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:paddingStart="@dimen/_16sdp"
+            android:paddingEnd="@dimen/_16sdp"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/_13ssp"/>
+
+        <EditText
             android:id="@+id/inputPassword"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_45sdp"
+            android:layout_height="@dimen/_35sdp"
             android:layout_marginTop="@dimen/_16sdp"
             android:background="@drawable/background_input"
             android:hint="@string/password"
@@ -98,7 +113,7 @@
         <EditText
             android:id="@+id/inputConfirmPassword"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_45sdp"
+            android:layout_height="@dimen/_35sdp"
             android:layout_marginTop="@dimen/_16sdp"
             android:background="@drawable/background_input"
             android:hint="@string/confirm_password"

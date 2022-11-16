@@ -51,5 +51,20 @@
         app:layout_constraintStart_toEndOf="@id/imageProfile"
         app:layout_constraintTop_toBottomOf="@id/viewSupporter"/>
 
+    <TextView
+        android:id="@+id/textUniversity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/secondary_text"
+        android:textSize="@dimen/_8ssp"
+        android:text="Unknown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imageProfile"
+        app:layout_constraintTop_toBottomOf="@id/textEmail"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

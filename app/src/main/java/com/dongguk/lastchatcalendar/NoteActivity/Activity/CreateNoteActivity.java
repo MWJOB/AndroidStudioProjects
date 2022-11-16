@@ -1,4 +1,4 @@
-package com.dongguk.lastchatcalendar.Note.Activity;
+package com.dongguk.lastchatcalendar.NoteActivity.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,8 +31,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dongguk.lastchatcalendar.Note.database.NotesDatabase;
-import com.dongguk.lastchatcalendar.Note.entities.Note;
+import com.dongguk.lastchatcalendar.NoteActivity.database.NotesDatabase;
+import com.dongguk.lastchatcalendar.NoteActivity.entities.Note;
 import com.dongguk.lastchatcalendar.R;
 import com.dongguk.lastchatcalendar.databinding.ActivityCreateNoteBinding;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;

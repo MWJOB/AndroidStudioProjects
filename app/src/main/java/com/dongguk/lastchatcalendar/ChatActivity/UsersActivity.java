@@ -1,10 +1,21 @@
 package com.dongguk.lastchatcalendar.ChatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Patterns;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Toast;
 
 
+import androidx.appcompat.app.AlertDialog;
+
+import com.dongguk.lastchatcalendar.NoteActivity.Activity.CreateNoteActivity;
+import com.dongguk.lastchatcalendar.NoteActivity.Activity.NoteActivity;
+import com.dongguk.lastchatcalendar.R;
 import com.dongguk.lastchatcalendar.adapters.UsersAdapter;
 import com.dongguk.lastchatcalendar.databinding.ActivityUsersBinding;
 import com.dongguk.lastchatcalendar.listeners.UserListener;
@@ -21,6 +32,9 @@ public class UsersActivity extends BaseActivity implements UserListener {
 
     private ActivityUsersBinding binding;
     private PreferenceManger preferenceManger;
+    //AlertDialog 사용 url 삽입을 위해
+    private AlertDialog dialogSearchEmail;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +48,8 @@ public class UsersActivity extends BaseActivity implements UserListener {
 
     private void setListeners(){
         binding.imageBack.setOnClickListener(v-> onBackPressed());
+        binding.imageSearch.setOnClickListener(v->
+                startActivity(new Intent(getApplicationContext(), FindUsersActivity.class)));
     }
 
     private void getUsers(){
@@ -53,6 +69,7 @@ public class UsersActivity extends BaseActivity implements UserListener {
                            User user = new User();
                            user.name = queryDocumentSnapshot.getString(Constants.KEY_NAME);
                            user.email = queryDocumentSnapshot.getString(Constants.KEY_EMAIL);
+                           user.university = queryDocumentSnapshot.getString(Constants.KEY_UNIVERSITY);
                            user.image = queryDocumentSnapshot.getString(Constants.KEY_IMAGE);
                            user.token = queryDocumentSnapshot.getString(Constants.KEY_FCM_TOKEN);
                            user.id = queryDocumentSnapshot.getId();
@@ -70,6 +87,47 @@ public class UsersActivity extends BaseActivity implements UserListener {
                    }
                 });
     }
+
+//    private void showSearchDialog(){
+//        if(dialogSearchEmail== null){
+//            AlertDialog.Builder builder = new AlertDialog.Builder(UsersActivity.this);
+//            View view = LayoutInflater.from(this).inflate(
+//                    R.layout.layout_serach_email,
+//                    (ViewGroup) findViewById(R.id.layoutAddUrlContainer)
+//            );
+//            builder.setView(view);
+//
+//            dialogSearchEmail = builder.create();
+//            dialogSearchEmail.show();
+//            if(dialogSearchEmail.getWindow() != null){
+//                dialogSearchEmail.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+//            }
+//            final EditText inputEmail = view.findViewById(R.id.InputEmail);
+//            inputEmail.requestFocus();
+//
+//            view.findViewById(R.id.textSearch).setOnClickListener(new View.OnClickListener(){
+//                @Override
+//                public void onClick(View v) {
+//                    if(inputEmail.getText().toString().trim().isEmpty()){
+//                        Toast.makeText(UsersActivity.this, "이메일을 입력하십시오.", Toast.LENGTH_SHORT).show();
+//                    }else if(!Patterns.EMAIL_ADDRESS.matcher(inputEmail.getText().toString()).matches()){
+//                        Toast.makeText(UsersActivity.this, "잘못된 이메일을 입력했습니다.", Toast.LENGTH_SHORT).show();
+//                    }else {
+//                        dialogSearchEmail.dismiss();
+//                    }
+//                }
+//            });
+//
+//            view.findViewById(R.id.textCancel).setOnClickListener(new View.OnClickListener(){
+//                @Override
+//                public void onClick(View v) {
+//                    dialogSearchEmail.dismiss();
+//                }
+//            });
+//        }
+//    }
+
+
 
     private void showErrorMessage(){
         binding.textErrorMessage.setText(String.format("%s", "No user available"));

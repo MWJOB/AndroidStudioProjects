@@ -1,4 +1,4 @@
-package com.dongguk.lastchatcalendar.Note.dao;
+package com.dongguk.lastchatcalendar.NoteActivity.dao;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -6,7 +6,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.dongguk.lastchatcalendar.Note.entities.Note;
+import com.dongguk.lastchatcalendar.NoteActivity.entities.Note;
 
 import java.util.List;
 

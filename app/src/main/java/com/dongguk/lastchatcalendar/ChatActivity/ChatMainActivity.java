@@ -9,9 +9,9 @@ import android.view.View;
 import android.widget.Toast;
 
 
-import com.dongguk.lastchatcalendar.Note.Activity.NoteActivity;
+import com.dongguk.lastchatcalendar.NoteActivity.Activity.NoteActivity;
 import com.dongguk.lastchatcalendar.adapters.RecentConversationsAdapter;
-import com.dongguk.lastchatcalendar.databinding.ActivityMainBinding;
+import com.dongguk.lastchatcalendar.databinding.ActivityChatMainBinding;
 import com.dongguk.lastchatcalendar.listeners.ConversionListener;
 import com.dongguk.lastchatcalendar.models.ChatMessage;
 import com.dongguk.lastchatcalendar.models.User;
@@ -30,9 +30,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements ConversionListener {
+public class ChatMainActivity extends BaseActivity implements ConversionListener {
 
-    private ActivityMainBinding binding;
+    private ActivityChatMainBinding binding;
     private PreferenceManger preferenceManger;
     private List<ChatMessage> conversations;
     private RecentConversationsAdapter conversationsAdapter;
@@ -41,7 +41,7 @@ public class MainActivity extends BaseActivity implements ConversionListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityChatMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         preferenceManger =new PreferenceManger(getApplicationContext());
         init();
