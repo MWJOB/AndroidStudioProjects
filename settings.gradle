@@ -3,6 +3,12 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
+        jcenter() {
+            content {
+                includeModule("com.theartofdev.edmodo", "android-image-cropper")
+                includeModule("id.zelory:", "compressor:2.1.0")
+            }
+        }
     }
 }
 dependencyResolutionManagement {
@@ -10,7 +16,13 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        jcenter() {
+            content {
+                includeModule("com.theartofdev.edmodo", "android-image-cropper")
+                includeModule("id.zelory:", "compressor:2.1.0")
+            }
+        }
     }
+    rootProject.name = "LastChatCalendar"
+    include ':app'
 }
-rootProject.name = "LastChatCalendar"
-include ':app'

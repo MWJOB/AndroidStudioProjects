@@ -1,10 +1,14 @@
 <resources>
     <string name="app_name">MyAppLast</string>
+    <string name="account_setting_text">회원 정보 기입</string>
+    <string name="botnav_home_text">Home</string>
     <string name="welcome_back">Welcome Back!</string>
     <string name="login_to_continue">Login to continue</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="sign_in">Sign In</string>
+    <string name="action_logout_text">Logout</string>
+    <string name="new_post">새로운 페이지</string>
     <string name="create_new_account">Create New Account</string>
     <string name="add_image">Add Image</string>
     <string name="name">Name</string>

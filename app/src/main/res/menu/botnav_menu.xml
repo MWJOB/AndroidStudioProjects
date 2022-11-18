@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/botnav_action_home"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="@string/botnav_home_text" />
+<!--    <item-->
+<!--        android:id="@+id/botnav_action_notif"-->
+<!--        android:icon="@drawable/ic_action_notif"-->
+<!--        android:title="@string/botnav_notif_text" />-->
+<!--    <item-->
+<!--        android:id="@+id/botnav_action_account"-->
+<!--        android:icon="@drawable/ic_action_account"-->
+<!--        android:title="@string/botnav_account_text" />-->
+</menu>

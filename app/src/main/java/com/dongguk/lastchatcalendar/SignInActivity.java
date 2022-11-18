@@ -49,16 +49,13 @@ public class SignInActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), SignUpActivity.class)));
         binding.buttonSignIn.setOnClickListener(v-> {
             auth.signInWithEmailAndPassword(binding.inputEmail.getText().toString(), binding.inputPassword.getText().toString())
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()){
-                                if(isValidSignInDetails()){
-                                    signIn();
-                                }else{
-                                    loading(false);
-                                    Toast.makeText(SignInActivity.this, "로그인 실패!", Toast.LENGTH_SHORT).show();
-                                }
+                    .addOnCompleteListener(task -> {
+                        if(task.isSuccessful()){
+                            if(isValidSignInDetails()){
+                                signIn();
+                            }else{
+                                loading(false);
+                                Toast.makeText(SignInActivity.this, "로그인 실패!", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
@@ -70,11 +67,12 @@ public class SignInActivity extends AppCompatActivity {
 
     //4
     private void signIn() {
+        String Email = binding.inputEmail.getText().toString();
+        String Password = binding.inputPassword.getText().toString();
         loading(true);
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         database.collection(Constants.KEY_COLLECTION_USERS)
                 .whereEqualTo(Constants.KEY_EMAIL, binding.inputEmail.getText().toString())
-                //.whereEqualTo(Constants.KEY_PASSWORD, binding.inputPassword.getText().toString())
                 .get()
                 .addOnCompleteListener(task -> {
                     if(task.isSuccessful() && task.getResult() != null

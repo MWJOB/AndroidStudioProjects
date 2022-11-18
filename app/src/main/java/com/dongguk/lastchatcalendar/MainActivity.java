@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.dongguk.lastchatcalendar.Activity.ReportActivity;
+import com.dongguk.lastchatcalendar.Board.BoardMainActivity;
 import com.dongguk.lastchatcalendar.ChatActivity.Activity.BaseActivity;
 import com.dongguk.lastchatcalendar.ChatActivity.Activity.ChatMainActivity;
 //import com.dongguk.lastchatcalendar.BulletinBoard.NewActivity;
@@ -232,6 +233,8 @@ public class MainActivity extends BaseActivity {
 
     //매인 화면 기능 읽어오기
     private void setListeners(){
+        binding.btnNew.setOnClickListener(v->
+                startActivity(new Intent(getApplicationContext(), BoardMainActivity.class)));
         binding.btnChat.setOnClickListener(v->
                 startActivity(new Intent(getApplicationContext(), ChatMainActivity.class)));
         binding.btnLogout.setOnClickListener(v-> signOut());
