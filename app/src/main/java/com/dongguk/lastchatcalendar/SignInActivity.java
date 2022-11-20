@@ -9,7 +9,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
 
-import com.dongguk.lastchatcalendar.Activity.ResetPasswordActivity;
+//import com.dongguk.lastchatcalendar.Activity.ResetPasswordActivity;
 import com.dongguk.lastchatcalendar.databinding.ActivitySignInBinding;
 import com.dongguk.lastchatcalendar.ChatActivity.utilities.Constants;
 import com.dongguk.lastchatcalendar.ChatActivity.utilities.PreferenceManger;
@@ -61,8 +61,8 @@ public class SignInActivity extends AppCompatActivity {
                     });
 
         });
-        binding.ForgotPassword.setOnClickListener(v ->
-                startActivity(new Intent(getApplicationContext(), ResetPasswordActivity.class)));
+//        binding.ForgotPassword.setOnClickListener(v ->
+//                startActivity(new Intent(getApplicationContext(), ResetPasswordActivity.class)));
     }
 
     //4

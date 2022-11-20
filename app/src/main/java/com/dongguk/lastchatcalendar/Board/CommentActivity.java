@@ -85,7 +85,7 @@ public class CommentActivity extends AppCompatActivity {
 
         String currentUserId = firebaseAuth.getCurrentUser().getUid();
 
-        firestore.collection("Users").document(currentUserId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        firestore.collection("UsersInfo").document(currentUserId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()){

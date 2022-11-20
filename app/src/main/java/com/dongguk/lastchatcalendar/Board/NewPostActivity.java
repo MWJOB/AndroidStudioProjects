@@ -2,8 +2,10 @@ package com.dongguk.lastchatcalendar.Board;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -12,12 +14,13 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.dongguk.lastchatcalendar.MainActivity;
 import com.dongguk.lastchatcalendar.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -35,7 +38,9 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -98,7 +103,9 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
         switch (v.getId()){
 
             case R.id.ivNewPost:
-                PickImages();
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                pickImage.launch(intent);
                 break;
 
             case R.id.btnNewPost:
@@ -237,12 +244,26 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    private void PickImages() {
-        CropImage.activity()
-                .setGuidelines(CropImageView.Guidelines.ON)
-                .setAspectRatio(4,3)
-                .start(NewPostActivity.this);
-    }
+    private final ActivityResultLauncher<Intent> pickImage = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if(result.getResultCode() == RESULT_OK){
+                    if(result.getData() != null){
+                        CropImage.activity()
+                                .setGuidelines(CropImageView.Guidelines.ON)
+                                .setAspectRatio(4,3)
+                                .start(NewPostActivity.this);
+
+                    }
+                }
+            }
+    );
+//    private void PickImages() {
+//        CropImage.activity()
+//                .setGuidelines(CropImageView.Guidelines.ON)
+//                .setAspectRatio(4,3)
+//                .start(NewPostActivity.this);
+//    }
 
     private void sendToMain(){
         Intent intent = new Intent(this, BoardMainActivity.class);

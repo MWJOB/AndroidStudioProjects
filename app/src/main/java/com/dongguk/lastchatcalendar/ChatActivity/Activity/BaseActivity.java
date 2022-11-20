@@ -29,13 +29,8 @@ public class BaseActivity extends AppCompatActivity {
                 .document(preferenceManger.getString(Constants.KEY_USER_ID));
     }
 
-    @Override
-    public void setContentView(@LayoutRes int layoutResID) {
-        super.setContentView(layoutResID);
+//
 
-        Toolbar myToolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(myToolbar);
-    }
 
     @Override
     protected void onPause() {

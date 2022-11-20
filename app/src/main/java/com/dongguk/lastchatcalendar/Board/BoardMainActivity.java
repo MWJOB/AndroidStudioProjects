@@ -6,53 +6,64 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.dongguk.lastchatcalendar.Board.fragment.AccountFragment;
 import com.dongguk.lastchatcalendar.Board.fragment.HomeFragment;
-import com.dongguk.lastchatcalendar.Board.fragment.NotifFragment;
+import com.dongguk.lastchatcalendar.ChatActivity.Activity.ChatActivity;
+import com.dongguk.lastchatcalendar.ChatActivity.utilities.Constants;
+import com.dongguk.lastchatcalendar.ChatActivity.utilities.PreferenceManger;
+import com.dongguk.lastchatcalendar.MainActivity;
 import com.dongguk.lastchatcalendar.R;
 import com.dongguk.lastchatcalendar.SetupActivity;
 
-import com.github.clans.fab.FloatingActionButton;
+//import com.github.clans.fab.FloatingActionButton;
+import com.dongguk.lastchatcalendar.SignInActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
 
 public class BoardMainActivity extends AppCompatActivity implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
     private Toolbar mainToolbar;
     private FloatingActionButton fbAddMain;
     private BottomNavigationView mainBotNav;
+    private PreferenceManger preferenceManger;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore firestore;
     private String userId;
 
-    private Fragment homeFragment, accountFragment, notifFragment;
+    private Fragment homeFragment;
 
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_board);
 
         fbAddMain = findViewById(R.id.fbAddMain);
         mainBotNav = findViewById(R.id.mainBotNav);
 
+
         //Fragment Intialize
         homeFragment = new HomeFragment();
-        accountFragment = new AccountFragment();
-        notifFragment = new NotifFragment();
+
 
 
         firestore = FirebaseFirestore.getInstance();
@@ -61,12 +72,14 @@ public class BoardMainActivity extends AppCompatActivity implements View.OnClick
         mainToolbar = findViewById(R.id.main_Toolbar);
         setSupportActionBar(mainToolbar);
         getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
+        setToolbarTitle("맛집 추천");
+
 
         mainBotNav.setOnNavigationItemSelectedListener(this);
         fbAddMain.setOnClickListener(this);
 
-        replaceFragment(homeFragment);
 
+        replaceFragment(homeFragment);
 
     }
 
@@ -78,7 +91,7 @@ public class BoardMainActivity extends AppCompatActivity implements View.OnClick
         if (user != null) {
             // User is signed in
             userId = mAuth.getCurrentUser().getUid();
-            firestore.collection("Users")
+            firestore.collection("UsersInfo")
                     .document(userId).get()
                     .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
@@ -100,6 +113,14 @@ public class BoardMainActivity extends AppCompatActivity implements View.OnClick
 
                     });
         }
+        fbAddMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(BoardMainActivity.this, NewPostActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -108,6 +129,24 @@ public class BoardMainActivity extends AppCompatActivity implements View.OnClick
         getMenuInflater().inflate(R.menu.main_menu, menu);
 
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_go_main:
+                sendToMainActivity();
+
+                return true;
+
+            case R.id.action_account_setting_btn:
+                sendToSetup();
+                return true;
+
+            default:
+                return false;
+        }
+
     }
 
 
@@ -135,6 +174,10 @@ public class BoardMainActivity extends AppCompatActivity implements View.OnClick
     }
 
 
+    private void sendToMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 
     private void sendToSetup() {
         Intent intent = new Intent(this, SetupActivity.class);
@@ -146,9 +189,16 @@ public class BoardMainActivity extends AppCompatActivity implements View.OnClick
         startActivity(intent);
 
     }
-    //Move Fragment
+    public void setToolbarTitle(String title){
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null){
+            actionBar.setTitle(title);
+        }
+    }
 
+    //Move Fragment
     private void replaceFragment(Fragment fragment){
+
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_container,fragment);

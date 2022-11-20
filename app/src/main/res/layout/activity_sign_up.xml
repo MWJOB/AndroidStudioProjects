@@ -131,7 +131,7 @@
             android:layout_marginTop="@dimen/_16sdp"
             android:animateLayoutChanges="true">
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:id="@+id/buttonSignUp"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
@@ -139,6 +139,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/_13ssp"
                 android:textStyle="bold"
+                android:backgroundTint="@color/primary"
                 app:cornerRadius="@dimen/_8sdp"/>
 
             <ProgressBar

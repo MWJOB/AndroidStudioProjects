@@ -13,7 +13,7 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/mainBotNav"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_Toolbar"
         app:layout_constraintVertical_bias="0.0">
@@ -24,14 +24,14 @@
         android:id="@+id/main_Toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/NotePrimary"
+        android:background="@color/primary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <com.github.clans.fab.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fbAddMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

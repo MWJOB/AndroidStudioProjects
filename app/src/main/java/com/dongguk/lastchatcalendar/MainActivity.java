@@ -9,10 +9,12 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+//import com.dongguk.lastchatcalendar.Activity.ReportActivity;
 import com.dongguk.lastchatcalendar.Activity.ReportActivity;
 import com.dongguk.lastchatcalendar.Board.BoardMainActivity;
 import com.dongguk.lastchatcalendar.ChatActivity.Activity.BaseActivity;
@@ -48,9 +50,11 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mFirebaseAuth = FirebaseAuth.getInstance();
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         preferenceManger =new PreferenceManger(getApplicationContext());
+        loadUserDetails();
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -78,7 +82,6 @@ public class MainActivity extends BaseActivity {
 
 
             setListeners();
-            loadUserDetails();
         }
 
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -140,15 +143,15 @@ public class MainActivity extends BaseActivity {
 //            }
 //        });
 //
-//        ImageView btn_report = findViewById(R.id.btn_report);
-//        btn_report.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view)
-//            {
-//                Intent intent = new Intent(MainActivity.this, ReportActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        ImageView btn_report = findViewById(R.id.btn_report);
+        btn_report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(MainActivity.this, ReportActivity.class);
+                startActivity(intent);
+            }
+        });
 //
 //        Button btn_announcement = findViewById(R.id.btn_announcement);
 //        btn_announcement.setOnClickListener(new View.OnClickListener() {
@@ -199,6 +202,7 @@ public class MainActivity extends BaseActivity {
     //로그아웃 로직
     private void signOut() {
         showToast("로그아웃 중...");
+        mFirebaseAuth.signOut();
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         DocumentReference documentReference =
                 database.collection(Constants.KEY_COLLECTION_USERS).document(
@@ -240,9 +244,9 @@ public class MainActivity extends BaseActivity {
         binding.btnLogout.setOnClickListener(v-> signOut());
         binding.btnNote.setOnClickListener(v->
                 startActivity(new Intent(getApplicationContext(), NoteActivity.class)));
-        binding.btnReport.setOnClickListener(v->
-                startActivity(new Intent(getApplicationContext(), ReportActivity.class)));
-        binding.btnDelete.setOnClickListener(v->DeleteUser());
+//        binding.btnReport.setOnClickListener(v->
+//                startActivity(new Intent(getApplicationContext(), ReportActivity.class)));
+//        binding.btnDelete.setOnClickListener(v->DeleteUser());
 
     }
 

@@ -25,10 +25,12 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import javax.annotation.Nullable;
 
@@ -116,38 +118,74 @@ public class HomeFragment extends Fragment {
 
 
                 Query queryFirstLoad = firestore.collection("Post").orderBy("timestamp", Query.Direction.DESCENDING).limit(5);
-                queryFirstLoad.addSnapshotListener(getActivity(),new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                        if (isFirstPageLoad){
-                            lastPost = queryDocumentSnapshots.getDocuments().get(queryDocumentSnapshots.size() -1);
-                        }
+            ListenerRegistration registration = queryFirstLoad.addSnapshotListener(new EventListener<QuerySnapshot>(){
+                @Override
+                public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                    if (isFirstPageLoad){
+                        lastPost = queryDocumentSnapshots.getDocuments().get(queryDocumentSnapshots.size() -1);
+                    }
 
-                        for (DocumentChange doc : queryDocumentSnapshots.getDocumentChanges()) {
+                    for (DocumentChange doc : queryDocumentSnapshots.getDocumentChanges()) {
 
-                            if (doc.getType() == DocumentChange.Type.ADDED) {
+                        if (doc.getType() == DocumentChange.Type.ADDED) {
 
-                                String postId = doc.getDocument().getId();
+                            String postId = doc.getDocument().getId();
 
-                                Posting posting = doc.getDocument().toObject(Posting.class).withId(postId);
+                            Posting posting = doc.getDocument().toObject(Posting.class).withId(postId);
 
-                                if (isFirstPageLoad) {
-                                    listPosting.add(posting);
-                                }
-                                else {
-                                    listPosting.add(0, posting);
-                                }
-
-                                postingAdapter.notifyDataSetChanged();
-
+                            if (isFirstPageLoad) {
+                                listPosting.add(posting);
+                            }
+                            else {
+                                listPosting.add(0, posting);
                             }
 
+                            postingAdapter.notifyDataSetChanged();
+
                         }
 
-                        isFirstPageLoad = false;
-
                     }
-                });
+
+                    isFirstPageLoad = false;
+
+                }
+            });
+//            registration.remove();
+
+//            })
+//                queryFirstLoad.addSnapshotListener(new EventListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+//                        if (isFirstPageLoad){
+//                            lastPost = queryDocumentSnapshots.getDocuments().get(queryDocumentSnapshots.size() -1);
+//                        }
+//
+//                        for (DocumentChange doc : queryDocumentSnapshots.getDocumentChanges()) {
+//
+//                            if (doc.getType() == DocumentChange.Type.ADDED) {
+//
+//                                String postId = doc.getDocument().getId();
+//
+//                                Posting posting = doc.getDocument().toObject(Posting.class).withId(postId);
+//
+//                                if (isFirstPageLoad) {
+//                                    listPosting.add(posting);
+//                                }
+//                                else {
+//                                    listPosting.add(0, posting);
+//                                }
+//
+//                                postingAdapter.notifyDataSetChanged();
+//
+//                            }
+//
+//                        }
+//
+//                        isFirstPageLoad = false;
+//
+//                    }
+//                });
+
 
 
 
@@ -165,7 +203,7 @@ public class HomeFragment extends Fragment {
                 .limit(5);
 
 
-        queryMorePost.addSnapshotListener(getActivity(), new EventListener<QuerySnapshot>() {
+        queryMorePost.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
 
@@ -196,6 +234,7 @@ public class HomeFragment extends Fragment {
 
             }
         });
+
 
 
     }

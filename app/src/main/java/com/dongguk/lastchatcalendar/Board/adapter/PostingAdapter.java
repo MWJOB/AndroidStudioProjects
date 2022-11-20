@@ -81,7 +81,7 @@ public class PostingAdapter extends RecyclerView.Adapter<PostingAdapter.ViewHold
 
 
         String userId = posting.getUser_id();
-        firestore.collection("Users").document(userId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        firestore.collection("UsersInfo").document(userId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
@@ -116,11 +116,11 @@ public class PostingAdapter extends RecyclerView.Adapter<PostingAdapter.ViewHold
                     if (!queryDocumentSnapshots.isEmpty()){
 
                         int count = queryDocumentSnapshots.size();
-                        holder.tvLikeCount.setText(count + " Likes");
+                        holder.tvLikeCount.setText(count + " 좋아요");
 
                     }else {
 
-                        holder.tvLikeCount.setText("0 Likes");
+                        holder.tvLikeCount.setText("0 좋아요");
 
                     }
                 }
@@ -137,11 +137,11 @@ public class PostingAdapter extends RecyclerView.Adapter<PostingAdapter.ViewHold
                     if (!queryDocumentSnapshots.isEmpty()){
 
                         int count = queryDocumentSnapshots.size();
-                        holder.tvCommentCount.setText(count + " Comments");
+                        holder.tvCommentCount.setText(count + "개의 댓글이 있습니다!");
 
                     }else {
 
-                        holder.tvCommentCount.setText("0 Comments");
+                        holder.tvCommentCount.setText("아직 댓글이 없습니다.");
 
                     }
                 }

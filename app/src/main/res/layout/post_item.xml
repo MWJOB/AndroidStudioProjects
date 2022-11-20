@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="12dp"
-                android:text="0 Likes"
+                android:text="0 좋아요"
                 app:layout_constraintStart_toEndOf="@+id/btn_item_like"
                 app:layout_constraintTop_toBottomOf="@+id/iv_item_post" />
 
@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="12dp"
-                android:text="0 Comments"
+                android:text="0 댓글"
                 app:layout_constraintStart_toEndOf="@+id/iv_item_comment"
                 app:layout_constraintTop_toBottomOf="@+id/iv_item_post" />
 
@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="19/10/2019"
+                android:text="11/11/2022"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_item_caption" />

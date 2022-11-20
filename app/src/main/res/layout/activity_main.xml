@@ -354,7 +354,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="신입생 게시판"
+                        android:text="맛집 추천해주세요!"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold"/>
@@ -398,7 +398,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="복학생 게시판"
+                        android:text="주변 맛집"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold"/>
