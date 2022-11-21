@@ -19,7 +19,7 @@ import com.dongguk.lastchatcalendar.ChatActivity.Activity.BaseActivity;
 import com.dongguk.lastchatcalendar.MainActivity;
 import com.dongguk.lastchatcalendar.R;
 import com.dongguk.lastchatcalendar.SetupActivity;
-import com.dongguk.lastchatcalendar.databinding.ActivityReportBinding;
+import com.dongguk.lastchatcalendar.databinding.ActivityApplyBinding;
 import com.dongguk.lastchatcalendar.models.ReportUserinfo;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,49 +28,43 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class ReportActivity extends BaseActivity {
-    private static final String TAG = "ReportActivity";
+public class ApplyActivity extends BaseActivity {
+    private static final String TAG = "ApplyActivity";
 
     private Toolbar mainToolbar;
     EditText title, contents;
-    Button ReportUploadButton;
+    Button ApplyUploadButton;
     TextView forbid_behaviour;
     private FirebaseUser user;
-    private ActivityReportBinding binding;
+    private ActivityApplyBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityReportBinding.inflate(getLayoutInflater());
+        binding = ActivityApplyBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        setContentView(R.layout.activity_report);
+        setContentView(R.layout.activity_apply);
 
         mainToolbar = findViewById(R.id.main_Toolbar);
         setSupportActionBar(mainToolbar);
-        setToolbarTitle("신고 하기");
+        setToolbarTitle("게시판 신청 하기");
 
 
-        title = findViewById(R.id.reportEditText);
-        contents = findViewById(R.id.reportEditText2);
-        ReportUploadButton = findViewById(R.id.btn_reportupload);
+        title = findViewById(R.id.applyEditText);
+        contents = findViewById(R.id.applyEditText2);
+        ApplyUploadButton = findViewById(R.id.btn_applyupload);
         forbid_behaviour = findViewById(R.id.forbid_behaviour);
 
-        forbid_behaviour.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ReportActivity.this, ForbidActActivity.class));
-            }
-        });
 
-        ReportUploadButton.setOnClickListener(new View.OnClickListener() {
+        ApplyUploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String txt_title = title.getText().toString();
                 String txt_contents = contents.getText().toString();
                 if (TextUtils.isEmpty(txt_title) || TextUtils.isEmpty(txt_contents)){
-                    Toast.makeText(ReportActivity.this,"내용을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ApplyActivity.this,"내용을 입력해주세요.", Toast.LENGTH_SHORT).show();
                 }else {
-                    ReportSend(txt_title, txt_contents);
+                    ApplySend(txt_title, txt_contents);
                 }
             }
         });
@@ -113,7 +107,7 @@ public class ReportActivity extends BaseActivity {
 
     private void uploader(ReportUserinfo reportUserinfo) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("report").add(reportUserinfo)
+        db.collection("Apply").add(reportUserinfo)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
@@ -128,12 +122,12 @@ public class ReportActivity extends BaseActivity {
                 });
     }
 
-    public void ReportSend(String txtTitle, String txt_contents) {
-        final String title = ((EditText) findViewById(R.id.reportEditText)).getText().toString();
-        final String write = ((EditText) findViewById(R.id.reportEditText2)).getText().toString();
+    public void ApplySend(String txtTitle, String txt_contents) {
+        final String title = ((EditText) findViewById(R.id.applyEditText)).getText().toString();
+        final String write = ((EditText) findViewById(R.id.applyEditText2)).getText().toString();
 
         if (title.length() > 0 && write.length() > 0) {
-            Toast.makeText(ReportActivity.this, "접수 완료", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ApplyActivity.this, "접수 완료", Toast.LENGTH_SHORT).show();
             user = FirebaseAuth.getInstance().getCurrentUser();
             ReportUserinfo reportUserinfo = new ReportUserinfo(user.getUid(), title, write);
             uploader(reportUserinfo);

@@ -106,7 +106,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="36dp"
                                 android:layout_marginTop="10dp"
-                                android:background="@drawable/btn_lightgrey"
+                                android:backgroundTint="@color/primary_dark"
                                 android:text="공지사항"
                                 android:textColor="@color/white" />
 
@@ -155,7 +155,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="36dp"
                                 android:layout_marginTop="10dp"
-                                android:background="@drawable/btn_lightgrey"
+                                android:backgroundTint="@color/primary_dark"
                                 android:text="메모하기"
                                 android:textColor="@color/white" />
 
@@ -205,7 +205,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="36dp"
                                 android:layout_marginTop="10dp"
-                                android:background="@drawable/btn_lightgrey"
+                                android:backgroundTint="@color/primary_dark"
                                 android:text="시간표"
                                 android:textColor="@color/white" />
 
@@ -236,7 +236,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="접수하기"
+                                android:text="신청하기"
                                 android:textColor="@color/black"
                                 android:textSize="17sp"
                                 android:textStyle="bold" />
@@ -244,7 +244,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="불만/개선/문의 접수"
+                                android:text="새로운 게시판 신설 문의 접수"
                                 android:textColor="@color/black"
                                 android:textSize="13sp"
                                 android:textStyle="bold" />
@@ -255,12 +255,12 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/btn_inquiry"
+                                    android:id="@+id/btn_apply"
                                     android:layout_width="wrap_content"
                                     android:layout_height="36dp"
                                     android:layout_marginTop="10dp"
-                                    android:background="@drawable/btn_lightgrey"
-                                    android:text="문의하기"
+                                    android:backgroundTint="@color/primary_dark"
+                                    android:text="신청하기"
                                     android:textColor="@color/white" />
 
                             </LinearLayout>
@@ -291,7 +291,7 @@
                         android:layout_gravity="center"
                         android:background="@drawable/btn_icon_background"
                         android:onClick="onHomePageClicked"
-                        android:backgroundTint="@color/white"
+                        app:backgroundTint="@color/gray"
                         android:padding="15dp"
                         android:src="@drawable/school_home" />
 
@@ -317,7 +317,7 @@
                         android:layout_height="55dp"
                         android:layout_gravity="center"
                         android:background="@drawable/btn_icon_background"
-                        android:backgroundTint="@color/white"
+                        android:backgroundTint="@color/gray"
                         android:padding="15dp"
                         android:src="@drawable/mint_comment" />
 
@@ -411,7 +411,7 @@
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/btn_return"
+                        android:id="@+id/btn_new2"
                         android:layout_marginEnd="10dp"
                         android:background="@android:color/transparent"
                         android:text="글쓰러 가기"

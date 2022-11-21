@@ -1,4 +1,4 @@
-package com.dongguk.lastchatcalendar.Board.fragment;
+package com.dongguk.lastchatcalendar.Board.Board2.fragment;
 
 
 import android.annotation.SuppressLint;
@@ -15,10 +15,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dongguk.lastchatcalendar.Board.Board2.adapter.PostingAdapter2;
 import com.dongguk.lastchatcalendar.Board.adapter.PostingAdapter;
 import com.dongguk.lastchatcalendar.Board.object.Posting;
-
 import com.dongguk.lastchatcalendar.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentChange;
@@ -31,7 +29,6 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import javax.annotation.Nullable;
 
@@ -39,7 +36,7 @@ import javax.annotation.Nullable;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment2 extends Fragment {
 
     private RecyclerView rvHomePost;
     private ArrayList<Posting> listPosting;
@@ -53,9 +50,9 @@ public class HomeFragment extends Fragment {
 
     private ImageView btnComment;
 
-    private PostingAdapter2 postingAdapter2;
+    private PostingAdapter postingAdapter;
 
-    public HomeFragment() {
+    public HomeFragment2() {
         // Required empty public constructor
     }
 
@@ -65,7 +62,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_home2, container, false);
 
         listPosting = new ArrayList<>();
 
@@ -73,12 +70,12 @@ public class HomeFragment extends Fragment {
         btnComment = view.findViewById(R.id.iv_item_comment);
 
         context = getContext();
-        postingAdapter2 = new PostingAdapter(listPosting);
+        postingAdapter = new PostingAdapter(listPosting);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
         rvHomePost.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvHomePost.setAdapter(postingAdapter2);
+        rvHomePost.setAdapter(postingAdapter);
 
         if (firebaseAuth.getCurrentUser() != null) {
 
@@ -118,7 +115,7 @@ public class HomeFragment extends Fragment {
 //            });
 
 
-                Query queryFirstLoad = firestore.collection("Post").orderBy("timestamp", Query.Direction.DESCENDING).limit(5);
+                Query queryFirstLoad = firestore.collection("Post2").orderBy("timestamp", Query.Direction.DESCENDING).limit(5);
             ListenerRegistration registration = queryFirstLoad.addSnapshotListener(new EventListener<QuerySnapshot>(){
                 @Override
                 public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
@@ -151,41 +148,6 @@ public class HomeFragment extends Fragment {
 
                 }
             });
-//            registration.remove();
-
-//            })
-//                queryFirstLoad.addSnapshotListener(new EventListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-//                        if (isFirstPageLoad){
-//                            lastPost = queryDocumentSnapshots.getDocuments().get(queryDocumentSnapshots.size() -1);
-//                        }
-//
-//                        for (DocumentChange doc : queryDocumentSnapshots.getDocumentChanges()) {
-//
-//                            if (doc.getType() == DocumentChange.Type.ADDED) {
-//
-//                                String postId = doc.getDocument().getId();
-//
-//                                Posting posting = doc.getDocument().toObject(Posting.class).withId(postId);
-//
-//                                if (isFirstPageLoad) {
-//                                    listPosting.add(posting);
-//                                }
-//                                else {
-//                                    listPosting.add(0, posting);
-//                                }
-//
-//                                postingAdapter.notifyDataSetChanged();
-//
-//                            }
-//
-//                        }
-//
-//                        isFirstPageLoad = false;
-//
-//                    }
-//                });
 
 
 
@@ -198,7 +160,7 @@ public class HomeFragment extends Fragment {
 
     private void loadMorePost(){
 
-        Query queryMorePost = firestore.collection("Post")
+        Query queryMorePost = firestore.collection("Post2")
                 .orderBy("timestamp", Query.Direction.DESCENDING)
                 .startAfter(lastPost)
                 .limit(5);
@@ -228,7 +190,7 @@ public class HomeFragment extends Fragment {
                 }
                 else {
 
-                    Toast.makeText(getContext(), "No more post", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "더 이상 포스트가 없습니다.", Toast.LENGTH_LONG).show();
 
                 }
 

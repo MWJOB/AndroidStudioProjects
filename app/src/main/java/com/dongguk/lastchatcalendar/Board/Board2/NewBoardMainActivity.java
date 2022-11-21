@@ -1,4 +1,4 @@
-package com.dongguk.lastchatcalendar.Board;
+package com.dongguk.lastchatcalendar.Board.Board2;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -14,7 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.dongguk.lastchatcalendar.Board.fragment.HomeFragment;
+import com.dongguk.lastchatcalendar.Board.Board2.fragment.HomeFragment2;
 import com.dongguk.lastchatcalendar.ChatActivity.utilities.PreferenceManger;
 import com.dongguk.lastchatcalendar.MainActivity;
 import com.dongguk.lastchatcalendar.R;
@@ -28,7 +28,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class BoardMainActivity extends AppCompatActivity implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
+public class NewBoardMainActivity extends AppCompatActivity implements View.OnClickListener {
     private Toolbar mainToolbar;
     private FloatingActionButton fbAddMain;
     private BottomNavigationView mainBotNav;
@@ -38,21 +38,21 @@ public class BoardMainActivity extends AppCompatActivity implements View.OnClick
     private FirebaseFirestore firestore;
     private String userId;
 
-    private Fragment homeFragment;
+    private Fragment homeFragment2;
 
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_board);
+        setContentView(R.layout.activity_main_board2);
 
         fbAddMain = findViewById(R.id.fbAddMain);
         mainBotNav = findViewById(R.id.mainBotNav);
 
 
         //Fragment 실행
-        homeFragment = new HomeFragment();
+        homeFragment2 = new HomeFragment2();
 
 
 
@@ -61,14 +61,13 @@ public class BoardMainActivity extends AppCompatActivity implements View.OnClick
 
         mainToolbar = findViewById(R.id.main_Toolbar);
         setSupportActionBar(mainToolbar);
-        setToolbarTitle("자유 게시판");
+        setToolbarTitle("정보 공유 게시판");
 
 
-        mainBotNav.setOnNavigationItemSelectedListener(this);
         fbAddMain.setOnClickListener(this);
 
 
-        replaceFragment(homeFragment);
+        replaceFragment(homeFragment2);
 
     }
 
@@ -106,7 +105,7 @@ public class BoardMainActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void onClick(View view)
             {
-                Intent intent = new Intent(BoardMainActivity.this, NewPostActivity.class);
+                Intent intent = new Intent(NewBoardMainActivity.this, NewPostActivity2.class);
                 startActivity(intent);
             }
         });
@@ -137,29 +136,22 @@ public class BoardMainActivity extends AppCompatActivity implements View.OnClick
 
     }
 
+//주의1
 
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
-        switch (menuItem.getItemId()){
-
-            case R.id.botnav_action_home:
-                replaceFragment(homeFragment);
-                return true;
-
-//            case R.id.botnav_action_notif:
-//                replaceFragment(notifFragment);
+//    @Override
+//    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+//
+//        switch (menuItem.getItemId()){
+//
+//            case R.id.botnav_action_home:
+//                replaceFragment(homeFragment2);
 //                return true;
 //
-//            case R.id.botnav_action_account:
-//                replaceFragment(accountFragment);
-//                return true;
-
-                default:
-                    return false;
-        }
-    }
+//
+//                default:
+//                    return false;
+//        }
+//    }
 
 
     private void sendToMainActivity() {
@@ -173,7 +165,7 @@ public class BoardMainActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void sendToNewPost() {
-        Intent intent = new Intent(this, NewPostActivity.class);
+        Intent intent = new Intent(this, NewPostActivity2.class);
         startActivity(intent);
 
     }

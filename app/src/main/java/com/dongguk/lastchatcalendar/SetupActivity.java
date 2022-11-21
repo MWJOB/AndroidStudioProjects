@@ -25,8 +25,7 @@ import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-//import com.canhub.cropper.CropImage;
-import com.dongguk.lastchatcalendar.Board.NewPostActivity;
+import com.dongguk.lastchatcalendar.databinding.ActivitySetupBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -52,12 +51,14 @@ public class SetupActivity extends AppCompatActivity implements View.OnClickList
     private Uri mainImageURI = null;
     private EditText etSetupName;
     private Button btnSaveSetting;
+    private Button btnCancel;
     private StorageReference storageReference;
     private FirebaseAuth mAuth;
     private FirebaseFirestore firestore;
     private ProgressBar pbSetup;
     private String userId;
     private boolean isChanged = false;
+    private ActivitySetupBinding binding;
 
 
     @Override
@@ -78,6 +79,7 @@ public class SetupActivity extends AppCompatActivity implements View.OnClickList
         setupToolbar = findViewById(R.id.setup_toolbar);
         etSetupName = findViewById(R.id.etNameSetup);
         btnSaveSetting = findViewById(R.id.btnSaveSetting);
+        btnCancel = findViewById(R.id.btnCancel);
         pbSetup = findViewById(R.id.pbSetup);
 
         setupProfileImg.setOnClickListener(this);
@@ -86,8 +88,7 @@ public class SetupActivity extends AppCompatActivity implements View.OnClickList
         btnSaveSetting.setEnabled(false);
         pbSetup.setVisibility(View.VISIBLE);
         LoadData();
-
-
+//        setListeners();
     }
 
     private void LoadData() {
@@ -124,6 +125,11 @@ public class SetupActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+
+            case R.id.btnCancel:
+                 Intent intent2 = new Intent(SetupActivity.this, MainActivity.class);
+                 startActivity(intent2);
+
             case R.id.ivProfileSetup:
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     if (ContextCompat.checkSelfPermission(SetupActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -207,19 +213,19 @@ public class SetupActivity extends AppCompatActivity implements View.OnClickList
     private void storeFullDtFirestore(@NonNull final Task<Uri> task, String UserName) {
         Uri DownloadURI;
         String dumpImg = "";
-        Map<String, Object> userMap = new HashMap<>();
+        Map<String, Object> NewUsers = new HashMap<>();
 
         if (task != null) {
             DownloadURI = task.getResult();
-            userMap.put("name", UserName);
-            userMap.put("image", DownloadURI.toString());
+            NewUsers.put("name", UserName);
+            NewUsers.put("image", DownloadURI.toString());
         } else {
-            userMap.put("name", UserName);
-            userMap.put("image", dumpImg);
+            NewUsers.put("name", UserName);
+            NewUsers.put("image", dumpImg);
         }
 
         firestore.collection("UsersInfo").document(userId)
-                .set(userMap, SetOptions.merge())
+                .set(NewUsers, SetOptions.merge())
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -251,12 +257,14 @@ public class SetupActivity extends AppCompatActivity implements View.OnClickList
                 }
             }
     );
-
-
-    private void PickImages() {
-        CropImage.activity()
-                .setGuidelines(CropImageView.Guidelines.ON)
-                .setAspectRatio(1,1)
-                .start(SetupActivity.this);
-  }
+//        private void setListeners() {
+//           binding.btnCancel.setOnClickListener(v -> onBackPressed());
+//        }
+//
+//    private void PickImages() {
+//        CropImage.activity()
+//                .setGuidelines(CropImageView.Guidelines.ON)
+//                .setAspectRatio(1,1)
+//                .start(SetupActivity.this);
+//  }
 }

@@ -1,4 +1,4 @@
-package com.dongguk.lastchatcalendar.Board;
+package com.dongguk.lastchatcalendar.Board.Board2;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -45,7 +45,7 @@ import java.util.UUID;
 import id.zelory.compressor.Compressor;
 
 
-public class NewPostActivity extends AppCompatActivity implements View.OnClickListener {
+public class NewPostActivity2 extends AppCompatActivity implements View.OnClickListener {
     private Toolbar  postToolbar;
     private ImageView ivNewPost;
     private EditText etCaptionPost;
@@ -65,7 +65,7 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_post);
+        setContentView(R.layout.activity_new_post2);
 
         mStorageRef = FirebaseStorage.getInstance().getReference();
         firestore = FirebaseFirestore.getInstance();
@@ -130,7 +130,7 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
                                         File newImagesFile = new File(ImageNewPostURI.getPath());
                                         try {
 
-                                            compressedImageFile = new Compressor(NewPostActivity.this)
+                                            compressedImageFile = new Compressor(NewPostActivity2.this)
                                                     .compressToBitmap(newImagesFile);
 
                                         } catch (IOException e) {
@@ -161,19 +161,19 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
                                                 postMap.put("user_id", UserId);
                                                 postMap.put("timestamp", FieldValue.serverTimestamp());
 
-                                                firestore.collection("Post").add(postMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                                firestore.collection("Post2").add(postMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                                                     @Override
                                                     public void onComplete(@NonNull Task<DocumentReference> task) {
 
                                                         if (task.isSuccessful()){
 
-                                                            Toast.makeText(NewPostActivity.this, "Post was Added", Toast.LENGTH_LONG).show();
+                                                            Toast.makeText(NewPostActivity2.this, "포스트가 추가 되었습니다.", Toast.LENGTH_LONG).show();
                                                             sendToMain();
 
                                                         }
                                                         else {
                                                             String errorMsg = task.getException().getMessage();
-                                                            Toast.makeText(NewPostActivity.this, errorMsg, Toast.LENGTH_LONG).show();
+                                                            Toast.makeText(NewPostActivity2.this, errorMsg, Toast.LENGTH_LONG).show();
 
                                                         }
 
@@ -186,7 +186,7 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
                                             public void onFailure(@NonNull Exception e) {
 
                                                 String errorMsg = e.getMessage().toString();
-                                                Toast.makeText(NewPostActivity.this, errorMsg, Toast.LENGTH_LONG ).show();
+                                                Toast.makeText(NewPostActivity2.this, errorMsg, Toast.LENGTH_LONG ).show();
 
                                             }
                                         });
@@ -196,7 +196,7 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
                                     else {
 
                                         String errorMsg = task.getException().getMessage();
-                                        Toast.makeText(NewPostActivity.this, errorMsg, Toast.LENGTH_LONG).show();
+                                        Toast.makeText(NewPostActivity2.this, errorMsg, Toast.LENGTH_LONG).show();
 
                                     }
 
@@ -211,7 +211,7 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
                 }
                 else {
 
-                    Toast.makeText(NewPostActivity.this, "Please fill empty column", Toast.LENGTH_LONG).show();
+                    Toast.makeText(NewPostActivity2.this, "Please fill empty column", Toast.LENGTH_LONG).show();
 
                 }
 
@@ -249,7 +249,7 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
                         CropImage.activity()
                                 .setGuidelines(CropImageView.Guidelines.ON)
                                 .setAspectRatio(4,3)
-                                .start(NewPostActivity.this);
+                                .start(NewPostActivity2.this);
 
                     }
                 }
@@ -263,7 +263,7 @@ public class NewPostActivity extends AppCompatActivity implements View.OnClickLi
 //    }
 
     private void sendToMain(){
-        Intent intent = new Intent(this, BoardMainActivity.class);
+        Intent intent = new Intent(this, NewBoardMainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();

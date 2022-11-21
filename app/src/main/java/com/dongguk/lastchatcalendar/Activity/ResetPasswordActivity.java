@@ -14,8 +14,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.dongguk.lastchatcalendar.SignInActivity;
 import com.dongguk.lastchatcalendar.R;
+import com.dongguk.lastchatcalendar.SignInActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;

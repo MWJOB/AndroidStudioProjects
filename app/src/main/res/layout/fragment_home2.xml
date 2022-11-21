@@ -3,12 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Board.fragment.NotifFragment">
+    tools:context=".Board.fragment.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_homepost"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="NotifFragment" />
-
+        android:layout_height="match_parent" />
 </FrameLayout>

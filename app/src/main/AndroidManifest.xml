@@ -22,7 +22,11 @@
             android:name=".Board.CommentActivity"
             android:exported="false"/>
 
-        <activity android:name=".Board.NewPostActivity"
+        <activity
+            android:name=".Board.Board2.CommentActivity2"
+            android:exported="false"/>
+
+        <activity android:name=".Board.Board2.NewPostActivity2"
             android:exported="true" />
 
         <activity android:name=".SetupActivity"
@@ -30,12 +34,17 @@
 
         <activity android:name=".Board.BoardMainActivity"/>
 
+        <activity android:name=".Board.Board2.NewBoardMainActivity"/>
+
         <activity
             android:name=".ChatActivity.Activity.FindUsersActivity"
             android:exported="false"/>
 
         <activity
             android:name=".Activity.ReportActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".Activity.ApplyActivity"
             android:exported="false"/>
         <activity
             android:name=".Activity.ResetPasswordActivity"

@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SetupActivity">
+    tools:context=".Board.NewPostActivity">
 
     <ProgressBar
-        android:id="@+id/pbSetup"
+        android:id="@+id/pbNewPost"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -16,69 +16,64 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setup_toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/post_Toolbar" />
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/setup_toolbar"
+        android:id="@+id/post_Toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/primary"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/ivProfileSetup"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="64dp"
-        android:src="@drawable/ic_account"
+    <ImageView
+        android:id="@+id/ivNewPost"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        android:background="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setup_toolbar"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+        app:layout_constraintTop_toBottomOf="@+id/pbNewPost" />
 
     <EditText
-        android:id="@+id/etNameSetup"
+        android:id="@+id/etCaptionPost"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
-        android:hint="당신의 이름은..."
-        android:inputType="textPersonName"
+        android:gravity="start|top"
+        android:hint="메시지를 입력하세요..."
+        android:inputType="textMultiLine"
+        android:maxLength="160"
+        android:padding="16dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textColorLink="@color/primary"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivProfileSetup" />
+        app:layout_constraintTop_toBottomOf="@+id/ivNewPost" />
 
     <Button
-        android:id="@+id/btnSaveSetting"
+        android:id="@+id/btnNewPost"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:background="@color/NoteAccent"
-        android:text="프로필 저장"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etNameSetup" />
+        android:backgroundTint="@color/NoteColor2"
+        android:textColor="@color/primary_dark"
+        android:padding="16dp"
+        android:textSize="18sp"
+        android:text="등록"
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnCancel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="32dp"
-        android:background="@color/NoteDelete"
-        android:text="취소"
-        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSaveSetting" />
+        app:layout_constraintTop_toBottomOf="@+id/etCaptionPost" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

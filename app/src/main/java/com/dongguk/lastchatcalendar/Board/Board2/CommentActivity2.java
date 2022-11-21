@@ -1,4 +1,4 @@
-package com.dongguk.lastchatcalendar.Board;
+package com.dongguk.lastchatcalendar.Board.Board2;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.dongguk.lastchatcalendar.Board.Board2.adapter.CommentAdapter2;
 import com.dongguk.lastchatcalendar.Board.adapter.CommentAdapter;
 import com.dongguk.lastchatcalendar.Board.object.Comments;
 import com.dongguk.lastchatcalendar.Board.object.PostId;
@@ -37,11 +38,11 @@ import javax.annotation.Nullable;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class CommentActivity extends AppCompatActivity {
+public class CommentActivity2 extends AppCompatActivity {
 
     private RecyclerView rvComment;
     private ArrayList<Comments> listComment;
-    private CommentAdapter commentAdapter;
+    private CommentAdapter2 commentAdapter2;
     private boolean isFirstPageLoad = true;
     private boolean isNull;
 //    private String postId;
@@ -62,7 +63,7 @@ public class CommentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_comment);
+        setContentView(R.layout.activity_comment2);
         Bundle bundle = getIntent().getExtras();
         postId = bundle.getString("postId");
 
@@ -74,10 +75,10 @@ public class CommentActivity extends AppCompatActivity {
         context = getApplicationContext();
 
         rvComment = findViewById(R.id.rv_comment);
-        commentAdapter = new CommentAdapter(listComment);
+        commentAdapter2 = new CommentAdapter(listComment);
 
         rvComment.setLayoutManager(new LinearLayoutManager(this));
-        rvComment.setAdapter(commentAdapter);
+        rvComment.setAdapter(commentAdapter2);
 
         firestore = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -102,8 +103,7 @@ public class CommentActivity extends AppCompatActivity {
 
 
         if (!isNull){
-//            Toast.makeText(this, postId, Toast.LENGTH_LONG).show();
-            Query queryFirstLoad = firestore.collection("Post").document(postId).collection("Comments").orderBy("timestamp", Query.Direction.ASCENDING);
+            Query queryFirstLoad = firestore.collection("Post2").document(postId).collection("Comments").orderBy("timestamp", Query.Direction.ASCENDING);
             queryFirstLoad.addSnapshotListener(this,new EventListener<QuerySnapshot>() {
                 @Override
                 public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
@@ -123,7 +123,7 @@ public class CommentActivity extends AppCompatActivity {
                                 listComment.add(0, comments);
                             }
 
-                            commentAdapter.notifyDataSetChanged();
+                            commentAdapter2.notifyDataSetChanged();
 
                         }
 
@@ -147,7 +147,7 @@ public class CommentActivity extends AppCompatActivity {
                 commentMap.put("user_id",currentUserId);
                 commentMap.put("timestamp", FieldValue.serverTimestamp());
 
-                firestore.collection("Post/" + postId + "/Comments").add(commentMap);
+                firestore.collection("Post2/" + postId + "/Comments").add(commentMap);
                 finish();
             }
         });
@@ -159,7 +159,7 @@ public class CommentActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        firestore.collection("Post/" + postId + "/Comments").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        firestore.collection("Post2/" + postId + "/Comments").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException e) {
                 if (e == null){

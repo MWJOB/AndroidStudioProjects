@@ -23,14 +23,14 @@
             android:layout_below="@+id/main_Toolbar">
 
             <EditText
-                android:id="@+id/reportEditText"
+                android:id="@+id/applyEditText"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
                 android:hint="상대 닉네임 / 제목"
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/reportEditText2"
+                android:id="@+id/applyEditText2"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_200sdp"
                 android:ems="10"
@@ -39,7 +39,7 @@
                 android:inputType="textMultiLine" />
 
             <Button
-                android:id="@+id/btn_reportupload"
+                android:id="@+id/btn_applyupload"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/NoteColor2"
@@ -60,17 +60,9 @@
                     android:lineSpacingExtra="@dimen/_10sdp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:text="*신고 접수 전 해당 내용을 확인해주세요*\n 1. 부적절할 홍보 게시글
-\n 2. 음란성 또는 청소년에게 부적합한 내용\n 3. 명예훼손/사생활 침해 및 저작권침해 등\n 4. 불법촬영물등 신고"/>
+                    android:text="*게시판 신청시 주의!* \n 1. 너무 선정적인 주제의 게시판은 안됩니다. \n 2. 불법적 내용의 주제의 게시판은 안됩니다.
+\n 3. 인신 공격적 주제의 게시판 또한 안됩니다. \n 4. 사회 규범에 맞는 게시판을 신청해주세요!  "/>
 
-                <TextView
-                    android:id="@+id/forbid_behaviour"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="@dimen/_8sdp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:text="5. 기타 [금지행위 자세히 보기]"/>
 
 
 

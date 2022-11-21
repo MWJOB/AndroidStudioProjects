@@ -14,18 +14,15 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-//import com.dongguk.lastchatcalendar.Activity.ReportActivity;
+import com.dongguk.lastchatcalendar.Activity.ApplyActivity;
 import com.dongguk.lastchatcalendar.Activity.ReportActivity;
+import com.dongguk.lastchatcalendar.Board.Board2.NewBoardMainActivity;
 import com.dongguk.lastchatcalendar.Board.BoardMainActivity;
 import com.dongguk.lastchatcalendar.ChatActivity.Activity.BaseActivity;
 import com.dongguk.lastchatcalendar.ChatActivity.Activity.ChatMainActivity;
-//import com.dongguk.lastchatcalendar.BulletinBoard.NewActivity;
-//import com.dongguk.lastchatcalendar.BulletinBoard.ReturnActivity;
-//import com.dongguk.lastchatcalendar.BulletinBoard.TransferActivity;
-//import com.dongguk.lastchatcalendar.Fragments.TimeTableFragment;
-import com.dongguk.lastchatcalendar.NoteActivity.Activity.NoteActivity;
 import com.dongguk.lastchatcalendar.ChatActivity.utilities.Constants;
 import com.dongguk.lastchatcalendar.ChatActivity.utilities.PreferenceManger;
+import com.dongguk.lastchatcalendar.NoteActivity.Activity.NoteActivity;
 import com.dongguk.lastchatcalendar.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -88,50 +85,10 @@ public class MainActivity extends BaseActivity {
 
        
 
-        //탈퇴 처리
-//        ImageView btn_delete = findViewById(R.id.btn_delete);
-//        btn_delete.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view)
-//            {
-//                mFirebaseAuth.getCurrentUser().delete();
-//
-//                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
-
-//        Button btn_new = findViewById(R.id.btn_new);
-//        btn_new.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view)
-//            {
-//                Intent intent = new Intent(MainActivity.this, NewActivity.class);
-//                startActivity(intent);
-//            }
-//        });
 
 
-//        Button btn_return = findViewById(R.id.btn_return);
-//        btn_return.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view)
-//            {
-//                Intent intent = new Intent(MainActivity.this, ReturnActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        Button btn_transfer = findViewById(R.id.btn_transfer);
-//        btn_transfer.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view)
-//            {
-//                Intent intent = new Intent(MainActivity.this, TransferActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+
+
 
 //        ImageView btn_chat = findViewById(R.id.btn_chat);
 //        btn_chat.setOnClickListener(new View.OnClickListener() {
@@ -152,6 +109,7 @@ public class MainActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+
 //
 //        Button btn_announcement = findViewById(R.id.btn_announcement);
 //        btn_announcement.setOnClickListener(new View.OnClickListener() {
@@ -239,15 +197,18 @@ public class MainActivity extends BaseActivity {
     private void setListeners(){
         binding.btnNew.setOnClickListener(v->
                 startActivity(new Intent(getApplicationContext(), BoardMainActivity.class)));
+        binding.btnNew2.setOnClickListener(v->
+                startActivity(new Intent(getApplicationContext(), NewBoardMainActivity.class)));
         binding.btnChat.setOnClickListener(v->
                 startActivity(new Intent(getApplicationContext(), ChatMainActivity.class)));
         binding.btnLogout.setOnClickListener(v-> signOut());
         binding.btnNote.setOnClickListener(v->
                 startActivity(new Intent(getApplicationContext(), NoteActivity.class)));
-//        binding.btnReport.setOnClickListener(v->
-//                startActivity(new Intent(getApplicationContext(), ReportActivity.class)));
-//        binding.btnDelete.setOnClickListener(v->DeleteUser());
-
+        binding.btnReport.setOnClickListener(v->
+                startActivity(new Intent(getApplicationContext(), ReportActivity.class)));
+        binding.btnApply.setOnClickListener(v->
+                startActivity(new Intent(getApplicationContext(), ApplyActivity.class)));
+        binding.btnDelete.setOnClickListener(v->DeleteUser());
     }
 
     public void onHomePageClicked(View view){

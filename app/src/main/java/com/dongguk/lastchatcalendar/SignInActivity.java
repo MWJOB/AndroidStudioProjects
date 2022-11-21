@@ -1,21 +1,17 @@
 package com.dongguk.lastchatcalendar;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
 
-//import com.dongguk.lastchatcalendar.Activity.ResetPasswordActivity;
-import com.dongguk.lastchatcalendar.databinding.ActivitySignInBinding;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.dongguk.lastchatcalendar.Activity.ResetPasswordActivity;
 import com.dongguk.lastchatcalendar.ChatActivity.utilities.Constants;
 import com.dongguk.lastchatcalendar.ChatActivity.utilities.PreferenceManger;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import com.dongguk.lastchatcalendar.databinding.ActivitySignInBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -61,8 +57,8 @@ public class SignInActivity extends AppCompatActivity {
                     });
 
         });
-//        binding.ForgotPassword.setOnClickListener(v ->
-//                startActivity(new Intent(getApplicationContext(), ResetPasswordActivity.class)));
+        binding.ForgotPassword.setOnClickListener(v ->
+                startActivity(new Intent(getApplicationContext(), ResetPasswordActivity.class)));
     }
 
     //4

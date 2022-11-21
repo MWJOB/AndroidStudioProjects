@@ -5,6 +5,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:backgroundTint="#FF0000">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/main_Toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <include
         layout="@layout/view_toolbar"
         android:layout_width="match_parent"
@@ -34,8 +44,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:textStyle="bold"
-                    android:text="파스텔은 더 즐겁고 유익한 커뮤니티를 위해 다음과 같은 이용제한 조치를 취하고 있습니다.
-모두가 기분 좋게 파스텔을 이용할 수 있도록 아래 사항을 지켜주시기 바랍니다. \n\n
+                    android:text="유익한 커뮤니티를 위해 매너를 지킵시다. \n\n
 1. 국제 평화, 국제 질서 및 국가 간의 우의를 현저히 해할 우려가 있는 행위\n - 인종차별·테러 등 국제 평화 및 국제질서를 현저히 해할 우려가 있는 행위\n
 - 외국의 국기·국장 등을 모독함으로써 국익에 반하거나 국가 간의 우의를 현저히 해할 우려가 있는 행위\n
 - 그 밖에 외국의 정치·종교·문화·사회에 대한 비방·비하·멸시 등 국가 간의 우의를 현저히 해할 우려가 있는
