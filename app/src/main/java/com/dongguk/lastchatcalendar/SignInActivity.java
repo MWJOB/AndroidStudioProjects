@@ -61,7 +61,7 @@ public class SignInActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), ResetPasswordActivity.class)));
     }
 
-    //4
+    //로그인
     private void signIn() {
         String Email = binding.inputEmail.getText().toString();
         String Password = binding.inputPassword.getText().toString();

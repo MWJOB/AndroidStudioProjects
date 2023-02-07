@@ -67,7 +67,6 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public int getItemCount() {
         return chatMessages.size();
     }
-
     @Override
     public int getItemViewType(int position) {
         if(chatMessages.get(position).senderId.equals(senderId)) {
@@ -76,7 +75,6 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             return VIEW_TYPE_RECEIVED;
         }
     }
-
     static class SentMessageViewHolder extends RecyclerView.ViewHolder{
 
         private final ItemContainerSentMessageBinding binding;
@@ -91,7 +89,6 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             binding.textDateTime.setText(chatMessage.dateTime);
         }
     }
-
     static class ReceivedMessageViewHolder extends RecyclerView.ViewHolder{
 
         private final ItemContainerReceivedMessageBinding binding;
@@ -105,7 +102,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             binding.textDateTime.setText(chatMessage.dateTime);
             if(receiverProfileImage != null){
                 binding.imageProfile.setImageBitmap(receiverProfileImage);
-            } //12
+            }
         }
     }
 }

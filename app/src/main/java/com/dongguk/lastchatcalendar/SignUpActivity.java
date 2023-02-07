@@ -75,41 +75,21 @@ public class SignUpActivity extends AppCompatActivity {
         String email = binding.inputEmail.getText().toString();
         String password = binding.inputPassword.getText().toString();
 
-
-
         fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener((task -> {
             if (task.isSuccessful()) {
                 loading(true);
 
+                //사용자 정보
+                FirebaseUser userId = fAuth.getCurrentUser();
+                assert userId != null;
+                String userid = userId.getUid();
 
-                // 인증 메일 보내기 로직
-//                VerifiedUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void unused) {
-//                        Toast.makeText(SignUpActivity.this, "인증 메일이 전송되었습니다.", Toast.LENGTH_SHORT).show();
-//                    }
-//                }).addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.d(TAG, "전송 실패: Email not sent " + e.getMessage());
-//                    }
-//                });
-
-
-
-                // 회원가입 로직
                 HashMap<String, Object> user = new HashMap<>();
                 user.put(Constants.KEY_NAME, binding.inputName.getText().toString());
                 user.put(Constants.KEY_EMAIL, binding.inputEmail.getText().toString());
                 user.put(Constants.KEY_PASSWORD, binding.inputPassword.getText().toString());
                 user.put(Constants.KEY_UNIVERSITY, binding.inputUniversity.getText().toString());
                 user.put(Constants.KEY_IMAGE, encodedImage);
-                FirebaseUser userId = fAuth.getCurrentUser();
-                assert userId != null;
-                String userid = userId.getUid();
-                //파이어데이터베이스 추가
-                reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
-                reference.setValue(user);
 
                 //파이어스토어 추가
                 database.collection(Constants.KEY_COLLECTION_USERS)
@@ -129,9 +109,9 @@ public class SignUpActivity extends AppCompatActivity {
                             loading(false);
                             showToast(exception.getMessage());
                         });
-            }
-            else{
-                showToast("이미 존재하는 이메일입니다.");
+                //파이어데이터베이스 추가
+                reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
+                reference.setValue(user);
             }
         }));
     }
@@ -214,3 +194,15 @@ public class SignUpActivity extends AppCompatActivity {
         }
     }
 }
+// 인증 메일 보내기 로직
+//                VerifiedUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void unused) {
+//                        Toast.makeText(SignUpActivity.this, "인증 메일이 전송되었습니다.", Toast.LENGTH_SHORT).show();
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Log.d(TAG, "전송 실패: Email not sent " + e.getMessage());
+//                    }
+//                });

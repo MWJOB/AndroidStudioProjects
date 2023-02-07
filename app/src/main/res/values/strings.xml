@@ -2,7 +2,7 @@
     <string name="app_name">MyAppLast</string>
     <string name="account_setting_text">회원 정보 수정</string>
     <string name="botnav_home_text">Home</string>
-    <string name="welcome_back">Welcome Back!</string>
+    <string name="welcome_back">어서오세요!</string>
     <string name="login_to_continue">Login to continue</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -15,7 +15,7 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="sign_up">Sign Up</string>
     <string name="select_user">Select User</string>
-    <string name="type_a_message">Type a message</string>
+    <string name="type_a_message">메시지를 입력하세요...</string>
     <string name="online">상대방이 접속중 입니다.</string>
     <string name="search_notes">Search Notes</string>
     <string name="note_name">Note Name</string>
@@ -35,7 +35,7 @@
     <string name="delete_note">노트 삭제</string>
     <string name="are_you_sure_delete_this">정말로 삭제 하시겠습니까?</string>
     <string name="delete_note22">Delete Note</string>
-    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="forgot_your_password">비밀번호 찾기</string>
     <string name="action_chat">채팅 화면으로</string>
     <string name="go_to_main">메인 화면으로</string>
 </resources>

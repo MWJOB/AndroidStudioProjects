@@ -29,6 +29,9 @@
         <activity android:name=".Board.Board2.NewPostActivity2"
             android:exported="true" />
 
+        <activity android:name=".Board.NewPostActivity"
+            android:exported="false"/>
+
         <activity android:name=".SetupActivity"
             android:exported="true"/>
 

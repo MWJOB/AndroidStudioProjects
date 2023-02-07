@@ -121,11 +121,8 @@ public class PostingAdapter extends RecyclerView.Adapter<PostingAdapter.ViewHold
                     }else {
 
                         holder.tvLikeCount.setText("0 좋아요");
-
                     }
                 }
-
-
             }
         });
 
@@ -182,17 +179,12 @@ public class PostingAdapter extends RecyclerView.Adapter<PostingAdapter.ViewHold
                         if(!task.getResult().exists()){
                             Map<String, Object> likesMap = new HashMap<>();
                             likesMap.put("timestamp", FieldValue.serverTimestamp());
-
                             firestore.collection("Post/" + postId + "/Likes").document(currentUserId).set(likesMap);
-
                         } else {
                             firestore.collection("Post/" + postId + "/Likes").document(currentUserId).delete();
-
                         }
-
                     }
                 });
-
             }
         });
 

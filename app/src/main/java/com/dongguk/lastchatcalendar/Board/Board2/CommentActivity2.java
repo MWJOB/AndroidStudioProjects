@@ -75,7 +75,7 @@ public class CommentActivity2 extends AppCompatActivity {
         context = getApplicationContext();
 
         rvComment = findViewById(R.id.rv_comment);
-        commentAdapter2 = new CommentAdapter(listComment);
+        commentAdapter2 = new CommentAdapter2(listComment);
 
         rvComment.setLayoutManager(new LinearLayoutManager(this));
         rvComment.setAdapter(commentAdapter2);

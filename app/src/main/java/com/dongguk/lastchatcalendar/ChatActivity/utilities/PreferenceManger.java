@@ -4,7 +4,6 @@ package com.dongguk.lastchatcalendar.ChatActivity.utilities;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-//앱 데이터 영속화 처리 클래스
 public class PreferenceManger {
 
     private final SharedPreferences sharedPreferences;
@@ -37,6 +36,5 @@ public class PreferenceManger {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
         editor.apply();
-
     }
 }

@@ -148,24 +148,6 @@ public class ChatMainActivity extends BaseActivity implements ConversionListener
                 .addOnFailureListener(e -> showToast("Unable to update token"));
 
     }
-//    //로그아웃 로직
-//    private void signOut() {
-//        showToast("로그아웃 중...");
-//        FirebaseFirestore database = FirebaseFirestore.getInstance();
-//        DocumentReference documentReference =
-//                database.collection(Constants.KEY_COLLECTION_USERS).document(
-//                        preferenceManger.getString(Constants.KEY_USER_ID)
-//                );
-//        HashMap<String, Object> updates = new HashMap<>();
-//        updates.put(Constants.KEY_FCM_TOKEN, FieldValue.delete());
-//        documentReference.update(updates)
-//                .addOnSuccessListener(unused -> {
-//                    preferenceManger.clear();
-//                    startActivity(new Intent(getApplicationContext(), SignInActivity.class));
-//                    finish();
-//                })
-//                .addOnFailureListener(e -> showToast("로그아웃 실패"));
-//    }
 
     //메인화면 user 불러오기 관련 출력 로직
     @Override

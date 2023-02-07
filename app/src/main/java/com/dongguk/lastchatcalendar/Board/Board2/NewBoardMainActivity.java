@@ -96,11 +96,10 @@ public class NewBoardMainActivity extends AppCompatActivity implements View.OnCl
                                 }
 
                             }
-
                         }
-
                     });
         }
+
         fbAddMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)

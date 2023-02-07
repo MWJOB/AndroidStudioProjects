@@ -54,11 +54,9 @@ public class MainActivity extends BaseActivity {
         loadUserDetails();
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
         if(user == null){
             startActivity(SignInActivity.class);
         } else {
-            //회원가입 or 로그인
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             DocumentReference docRef = db.collection("users").document(user.getUid());
             docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -83,23 +81,6 @@ public class MainActivity extends BaseActivity {
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
-       
-
-
-
-
-
-
-//        ImageView btn_chat = findViewById(R.id.btn_chat);
-//        btn_chat.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view)
-//            {
-//                Intent intent = new Intent(MainActivity.this, RoomActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
         ImageView btn_report = findViewById(R.id.btn_report);
         btn_report.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,39 +90,6 @@ public class MainActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
-
-//
-//        Button btn_announcement = findViewById(R.id.btn_announcement);
-//        btn_announcement.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this, AnnouncementActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        Button btn_calendar = findViewById(R.id.btn_calendar);
-//        btn_calendar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                assert getActivity() != null;
-//                getActivity().startActivity(new Intent(getActivity(),TimeTableFragment.class));
-//            }
-//
-//            private Context getActivity() {
-//                return null;
-//            }
-//        });
-//
-//        Button btn_lightbulb = findViewById(R.id.btn_lightbulb);
-//        btn_lightbulb.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this, LightbulbActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-
     }
     private void loadUserDetails(){
         binding.textName.setText(preferenceManger.getString(Constants.KEY_NAME) + "님 어서오세요!");
@@ -220,6 +168,4 @@ public class MainActivity extends BaseActivity {
         Intent intent = new Intent(this, c);
         startActivity(intent);
     }
-
-
 }

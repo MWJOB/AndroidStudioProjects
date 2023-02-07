@@ -181,7 +181,6 @@ public class ChatActivity extends BaseActivity {
                     ).intValue();
                     isReceiverAvailable = availability == 1;
                 }
-                //12
                 receiverUser.token = value.getString(Constants.KEY_FCM_TOKEN);
                 if(receiverUser.image == null){
                     receiverUser.image = value.getString(Constants.KEY_IMAGE);
@@ -196,8 +195,7 @@ public class ChatActivity extends BaseActivity {
             }
         });
     }
-    //firebase => user 정보전달
-    //fireBase에서 메시지 정보 읽어오기
+
     private void listenMessages(){
         database.collection(Constants.KEY_COLLECTION_CHAT)
                 .whereEqualTo(Constants.KEY_SENDER_ID, preferenceManger.getString(Constants.KEY_USER_ID))

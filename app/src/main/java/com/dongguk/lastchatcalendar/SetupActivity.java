@@ -66,8 +66,6 @@ public class SetupActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup);
 
-//        setSupportActionBar(setupToolbar);
-//        getSupportActionBar().setTitle(getResources().getString(R.string.account_setting_text));
 
         //파이어베이스 정보 불러오기
         storageReference = FirebaseStorage.getInstance().getReference();
@@ -257,14 +255,4 @@ public class SetupActivity extends AppCompatActivity implements View.OnClickList
                 }
             }
     );
-//        private void setListeners() {
-//           binding.btnCancel.setOnClickListener(v -> onBackPressed());
-//        }
-//
-//    private void PickImages() {
-//        CropImage.activity()
-//                .setGuidelines(CropImageView.Guidelines.ON)
-//                .setAspectRatio(1,1)
-//                .start(SetupActivity.this);
-//  }
 }

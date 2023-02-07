@@ -234,7 +234,7 @@ public class PostingAdapter2 extends RecyclerView.Adapter<PostingAdapter2.ViewHo
             btnLike = itemView.findViewById(R.id.btn_item_like);
             tvLikeCount = itemView.findViewById(R.id.tv_item_likecount);
             btnComment = itemView.findViewById(R.id.iv_item_comment);
-            tvCommentCount = itemView.findViewById(R.id.tv_item_komencount);
+            tvCommentCount = itemView.findViewById(R.id.tv_item_comment_count);
 
 
         }

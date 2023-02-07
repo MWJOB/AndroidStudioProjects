@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dongguk.lastchatcalendar.Board.Board2.adapter.PostingAdapter2;
 import com.dongguk.lastchatcalendar.Board.adapter.PostingAdapter;
 import com.dongguk.lastchatcalendar.Board.object.Posting;
 import com.dongguk.lastchatcalendar.R;
@@ -50,7 +51,7 @@ public class HomeFragment2 extends Fragment {
 
     private ImageView btnComment;
 
-    private PostingAdapter postingAdapter;
+    private PostingAdapter2 postingAdapter2;
 
     public HomeFragment2() {
         // Required empty public constructor
@@ -70,12 +71,12 @@ public class HomeFragment2 extends Fragment {
         btnComment = view.findViewById(R.id.iv_item_comment);
 
         context = getContext();
-        postingAdapter = new PostingAdapter(listPosting);
+        postingAdapter2 = new PostingAdapter2(listPosting);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
         rvHomePost.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvHomePost.setAdapter(postingAdapter);
+        rvHomePost.setAdapter(postingAdapter2);
 
         if (firebaseAuth.getCurrentUser() != null) {
 
@@ -138,7 +139,7 @@ public class HomeFragment2 extends Fragment {
                                 listPosting.add(0, posting);
                             }
 
-                            postingAdapter.notifyDataSetChanged();
+                            postingAdapter2.notifyDataSetChanged();
 
                         }
 
@@ -148,7 +149,6 @@ public class HomeFragment2 extends Fragment {
 
                 }
             });
-
 
 
 
@@ -181,7 +181,7 @@ public class HomeFragment2 extends Fragment {
 
                             Posting posting = doc.getDocument().toObject(Posting.class).withId(postId);
                             listPosting.add(posting);
-                            postingAdapter.notifyDataSetChanged();
+                            postingAdapter2.notifyDataSetChanged();
 
                         }
 

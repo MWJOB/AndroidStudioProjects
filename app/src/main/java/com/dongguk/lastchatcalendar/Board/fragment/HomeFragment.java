@@ -73,7 +73,7 @@ public class HomeFragment extends Fragment {
         btnComment = view.findViewById(R.id.iv_item_comment);
 
         context = getContext();
-        postingAdapter2 = new PostingAdapter(listPosting);
+        postingAdapter2 = new PostingAdapter2(listPosting);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -101,21 +101,6 @@ public class HomeFragment extends Fragment {
                 }
             });
 
-//            firestore.collection("Post").addSnapshotListener(new EventListener<QuerySnapshot>() {
-//                @Override
-//                public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException e) {
-//                    if (snapshots.isEmpty()){
-//                        isNull = true;
-//                        Toast.makeText(context, "True", Toast.LENGTH_LONG).show();
-//
-//                    }else {
-//                        isNull = false;
-//                        Toast.makeText(context, "False", Toast.LENGTH_LONG).show();
-//
-//
-//                    }
-//                }
-//            });
 
 
                 Query queryFirstLoad = firestore.collection("Post").orderBy("timestamp", Query.Direction.DESCENDING).limit(5);
@@ -125,67 +110,24 @@ public class HomeFragment extends Fragment {
                     if (isFirstPageLoad){
                         lastPost = queryDocumentSnapshots.getDocuments().get(queryDocumentSnapshots.size() -1);
                     }
-
                     for (DocumentChange doc : queryDocumentSnapshots.getDocumentChanges()) {
-
                         if (doc.getType() == DocumentChange.Type.ADDED) {
-
                             String postId = doc.getDocument().getId();
-
                             Posting posting = doc.getDocument().toObject(Posting.class).withId(postId);
-
                             if (isFirstPageLoad) {
                                 listPosting.add(posting);
                             }
                             else {
                                 listPosting.add(0, posting);
                             }
-
-                            postingAdapter.notifyDataSetChanged();
-
+                            postingAdapter2.notifyDataSetChanged();
                         }
-
                     }
-
                     isFirstPageLoad = false;
-
                 }
             });
-//            registration.remove();
 
-//            })
-//                queryFirstLoad.addSnapshotListener(new EventListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-//                        if (isFirstPageLoad){
-//                            lastPost = queryDocumentSnapshots.getDocuments().get(queryDocumentSnapshots.size() -1);
-//                        }
-//
-//                        for (DocumentChange doc : queryDocumentSnapshots.getDocumentChanges()) {
-//
-//                            if (doc.getType() == DocumentChange.Type.ADDED) {
-//
-//                                String postId = doc.getDocument().getId();
-//
-//                                Posting posting = doc.getDocument().toObject(Posting.class).withId(postId);
-//
-//                                if (isFirstPageLoad) {
-//                                    listPosting.add(posting);
-//                                }
-//                                else {
-//                                    listPosting.add(0, posting);
-//                                }
-//
-//                                postingAdapter.notifyDataSetChanged();
-//
-//                            }
-//
-//                        }
-//
-//                        isFirstPageLoad = false;
-//
-//                    }
-//                });
+
 
 
 
@@ -219,7 +161,7 @@ public class HomeFragment extends Fragment {
 
                             Posting posting = doc.getDocument().toObject(Posting.class).withId(postId);
                             listPosting.add(posting);
-                            postingAdapter.notifyDataSetChanged();
+                            postingAdapter2.notifyDataSetChanged();
 
                         }
 
@@ -235,9 +177,5 @@ public class HomeFragment extends Fragment {
 
             }
         });
-
-
-
     }
-
 }

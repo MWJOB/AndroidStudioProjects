@@ -24,14 +24,7 @@
             android:textSize="@dimen/_18ssp"
             android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_4sdp"
-            android:text="@string/login_to_continue"
-            android:textColor="@color/primary_text"
-            android:textSize="@dimen/_12ssp"
-            android:textStyle="bold" />
+
 
         <EditText
             android:id="@+id/inputEmail"
@@ -73,7 +66,7 @@
                 android:id="@+id/buttonSignIn"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
-                android:text="@string/sign_in"
+                android:text="로그인"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_13ssp"
                 android:textStyle="bold"
@@ -106,7 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_15sdp"
-            android:text="@string/create_new_account"
+            android:text="회원 가입"
             android:textColor="@color/primary"
             android:textSize="@dimen/_13ssp"
             android:textStyle="bold" />
